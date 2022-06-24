@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>积分商城</title>
+    <link rel="stylesheet" th:href="@{/malls/jifen/layui/css/layui.css}">
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery-1.4.3.min.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.cookie.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.json-2.2.min.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/common.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/position.js?resVer=20181018173157"></script>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/normalize.css?resVer=20181018173157"/>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/tipsLayer.css?resVer=20181018173157"/>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/Popupwindow.css?resVer=20181018173157"/>
+    <script>
+
+        if (!this.Esf) {
+            this.Esf = {};
+            Esf.contextPath = "http://jf.10010.com";
+            Esf.resPath = "https://res.mall.10010.cn/jf-mall/res";
+            Esf.webLoginUrl = "https://uac.10010.com";
+            Esf.webDetail="http://jf.10010.com/item/{0}.html";
+        }
+
+        document.domain = "10010.com";
+    </script>
+
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/homePageNew.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/banner.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/style.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.SuperSlide.2.1.1.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/homePage.js?resVer=20181018173157"></script>
+    <script language="javascript" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/position.js?resVer=20181018173157"></script>
+
+    <script>
+        Esf.flowpkgHN = "http://jf.10010.com/item/111588880002.html";
+        Esf.flowpkgOther = "http://jf.10010.com/item/111588880001.html";
+    </script>
+    <script language='javascript' type='text/javascript' src='https://m.jf.10010.com/cms/nps/lib/ma.js' charset='utf-8'></script></head>
+
+<style>
+        .d1{
+            margin-left: 90px;
+        }
+        .d2{
+            padding-left: 600px;
+        }
+        .d3{
+            height: 90px;
+            width: 90px;
+        }
+        .d4{
+            margin-top: 30px;
+        }
+        .d5{
+            margin-left: 100px;
+        }
+        .d6{
+            margin-left: -180px;
+        }
+        .d7{
+            background-color: #a6e1ec;
+            width: 1600px;
+            padding-left: 110px;
+            height: 40px;
+        }
+        .d8{
+            margin-left: -40px;
+        }
+        .d9{
+            margin-top: 12px;
+        }
+        .d10{
+            margin-top: 30px;
+        }
+        .d11{
+            padding-left: 60px;
+        }
+    </style>
+
+</head>
+<body>
+<div th:replace="/home/heart :: html" width="1920px" height="36px" style="border: none" ></div>
+<!-- 你的HTML代码 -->
+
+<script th:src="@{/malls/jifen/layui/layui.js}"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+                ,form = layui.form;
+
+//        layer.msg('Hello World');
+    });
+</script>
+
+    <script>
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function(){
+            var element = layui.element;
+
+
+        });
+    </script>
+
+<div class="layui-fluid">
+    <ul class="layui-nav" lay-filter="jifenxiangqing">
+        <li class="layui-nav-item1 d3">我的积分商城</li>
+        <li class="layui-nav-item d1"><a th:href="@{/jifen3}">积分详情</a></li>
+        <li class="layui-nav-item layui-this"><a th:href="@{/maskgoods/integersearch}">积分兑换</a></li>
+        <li class="layui-nav-item"><a th:href="@{/maskgoods/markhavebuy}">积分明细</a></li>
+        <li class="layui-nav-item1 a3">我的总积分：
+            <a th:text="${session.user.userinit}"></a>
+            <!--<span th:text="${session.user.userinit}"></span>-->
+        </li>
+    </ul>
+</div>
+<div class="layui-fluid d4 d7">
+    <div class="layui-row">
+        <div class="layui-col-md4 d5 d9"style="margin-left: 110px;width:450px;">
+            商品名
+        </div>
+        <div class="layui-col-md2 d6 d9"style="margin-left: 1px;width: 120px">
+            积分变化
+        </div>
+        <div class="layui-col-md4 d8 d9"style="margin-left: 1px;width: 120px">
+            日期
+        </div>
+        <div class="layui-col-md2 d6 d9"style="margin-left: 1px;width: 120px">
+          数量
+        </div>
+    </div>
+</div>
+<div class="layui-container d4 d9">
+    <li th:each="markbuy:${markbuys}">
+        <div class="layui-row">
+            <div class="layui-col-md1">
+
+                <a href="#"><img class="d3" th:src="${markbuy.goods.image.goodsPicMaster}"></a>
+            </div>
+            <div class="layui-col-md3 d9">
+               <br><a href="#"  th:text="${markbuy.goods.goodsName}"></a>
+                <!--<br>￥-->
+                <!--<a th:text=""></a>-->
+            </div>
+            <div class="layui-col-md2 d10" style="margin-left: 80px;width: 80px">
+                <div th:if="${markbuy.marks<0}"  >
+                <font size="5" color="red">
+                    <strong th:text="${markbuy.marks}"></strong>
+                </font>
+                </div>
+                <div th:unless="${markbuy.marks<0}"  >
+                    <font size="5" color="red">
+                        +<strong th:text="${markbuy.marks}"></strong>
+                    </font>
+                </div>
+            </div>
+            <div class="layui-col-md4 d10" style="width: 80px">
+                <a  th:text="${#dates.format(markbuy.markdate,'yyyy-MM-dd')}"></a>
+            </div>
+            <div class="layui-col-md2 d10" style="margin-left: 80px">
+                <a  th:text="${markbuy.num}"></a>
+            </div>
+</div>
+    </li>
+    </div>
+
+
+</div>
+<iframe th:src="@{/foot/bottom}"  width="1920px;" height="656px;"  style="border: none"></iframe>
+</body>
+</html>
+      

@@ -1,0 +1,464 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="Bookmark" th:href="@{/favicon.ico}" >
+	<link rel="Shortcut Icon" th:href="@{/favicon.ico}" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" th:src="@{lib/html5shiv.js}"></script>
+	<script type="text/javascript" th:src="@{lib/respond.min.js}"></script>
+
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui/css/H-ui.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/H-ui.admin.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/skin/default/skin.css}" id="skin" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style.css}" />
+	<!--[if IE 6]>
+	<script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--/meta 作为公共模版分离出去-->
+
+	<link th:href="@{lib/webuploader/0.1.5/webuploader.css}" rel="stylesheet" type="text/css" />
+	<style>
+		.c1{
+			width: 70px;
+			height: 30px;
+			margin-bottom: 30px;
+			margin-top: 30px;
+		}
+		.c2{
+			margin-left: 600px;
+		}
+	</style>
+</head>
+<body>
+<div class="page-container">
+	<form th:action="@{/admin/add}" method="post" enctype="multipart/form-data" class="form form-horizontal" id="form-article-add">
+
+		<input type="hidden"  name="picid" class="picid" id="picid"/>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsName">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品所含积分：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsMark">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品所需积分：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsInt">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品价格：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsPrice">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品折扣：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsDiscount">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品库存量：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsSum">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品品牌：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="brandId">
+					<option>请选择</option>
+					<option th:each="brandId:${brandId}" th:value="${brandId}" th:text="${brandId}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">一级类别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="id_1">
+					<option>请选择</option>
+					<option th:each="goodsClass1s:${goodsClass1s}" th:value="${goodsClass1s.id_1}" th:text="${goodsClass1s.className1}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">二级类别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="id_2">
+					<option>请选择</option>
+					<option th:each="goodsClass2s:${goodsClass2s}" th:value="${goodsClass2s.id_2}" th:text="${goodsClass2s.className2}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">规格编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="speId">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否上架：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="goodsShelf">
+					<option>请选择</option>
+					<option value="0">上架商品</option>
+					<option value="1">下架商品</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否积分商品：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="goodsInteder">
+					<option>请选择</option>
+					<option value="0">积分商品</option>
+					<option value="1">普通商品</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否秒杀商品：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="isMiaoSha">
+					<option>请选择</option>
+					<option value="0">秒杀商品</option>
+					<option value="1">普通商品</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否优惠商品：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="isYouHui">
+					<option>请选择</option>
+					<option value="0">优惠商品</option>
+					<option value="1">普通商品</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品描述：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="goodsDescribe">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商品主图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<p><img src="" width="100px" height="80px" id="img"/>
+
+					<input type="file" name="file" id="file"/>
+			</div>
+			</div>
+
+		<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-2">商品缩略图1：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+		<p><img src="" width="100px" height="80px" id="img1"/>
+
+			<input type="file" name="file1" id="file1"/>
+	</div>
+</div>
+<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-2">商品缩略图2：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+		<p><img src="" width="100px" height="80px" id="img2"/>
+
+			<input type="file" name="file2" id="file2"/>
+	</div>
+</div>
+<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-2">商品缩略图3：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+		<p><img src="" width="100px" height="80px" id="img3"/>
+
+			<input type="file" name="file3" id="file3"/>
+	</div>
+</div>
+<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-2">商品缩略图4：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+		<p><img src="" width="100px" height="80px" id="img4"/>
+
+			<input type="file" name="file4" id="file4"/>
+	</div>
+</div>
+<input type="hidden" th:value="${upToken}"  class="upToken"/>
+<input class="c1 c2" type="submit" value="增加"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="c1" type="reset" value="取消"/>
+
+</form>
+
+                <!--_footer 作为公共模版分离出去-->
+                <script type="text/javascript" th:src="@{lib/jquery/1.9.1/jquery.min.js}"></script>
+				<script type="text/javascript" th:src="@{lib/layer/2.4/layer.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui/js/H-ui.min.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui.admin/js/H-ui.admin.js}"></script> <!--/_footer 作为公共模版分离出去-->
+
+
+</body>
+<script type="text/javascript" src="https://unpkg.com/qiniu-js@2.5.3/dist/qiniu.min.js"></script>
+<script>
+	var filearray = new Array()
+	$('#file').on('change',function (e) {
+	   var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+		console.log(fileid)
+	    file = e.target.files[0]
+		var key;
+		console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/admin1?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+		var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+
+
+    $('#file1').on('change',function (e) {
+        var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+        console.log(fileid)
+        file = e.target.files[0]
+        var key;
+        console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/admin2?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+
+
+    $('#file2').on('change',function (e) {
+        var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+        console.log(fileid)
+        file = e.target.files[0]
+        var key;
+        console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/admin3?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+
+
+    $('#file3').on('change',function (e) {
+        var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+        console.log(fileid)
+        file = e.target.files[0]
+        var key;
+        console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/admin4?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+
+
+
+    $('#file4').on('change',function (e) {
+        var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+        console.log(fileid)
+        file = e.target.files[0]
+        var key;
+        console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/admin5?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+</script>
+
+
+
+
+</html>

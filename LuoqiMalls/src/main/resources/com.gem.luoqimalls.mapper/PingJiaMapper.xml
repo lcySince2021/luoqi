@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gem.luoqimalls.mapper.PingJiaMapper">
+    <resultMap id="selectAllEvaluate" type="Evaluate">
+        <id column="evaluateId" property="evaluateId"/>
+        <result column="evaluateText" property="evaluateText"/>
+        <result column="goodsId" property="goodsId"/>
+        <result column="review" property="review"/>
+        <result column="reply" property="reply"/>
+        <result column="pjTime" property="pjTime"/>
+        <association property="user" javaType="User">
+            <result column="userAccount" property="userAccount"/>
+            <result column="userNick" property="userNick"/>
+            <result column="userName" property="userName"/>
+        </association>
+    </resultMap>
+    <insert id="insertEvaluateId">
+        insert into evaluate(evaluateText,goodsId,userId,isGood,pjTime) values (#{evaluateText},#{goodsId},#{userId},#{isGood},#{pjTime})
+    </insert>
+    <update id="updateStateShouHuo">
+        update `order` set orderState='待评价' where orderId=#{param1}
+    </update>
+    <update id="updateStateByOrderId">
+       update `order` set orderState='已评价' where orderId=#{param1}
+    </update>
+    <update id="updateIsEvaluateByOrderDetailId">
+        UPDATE orderdetails set isEvaluate=0 where orderDetailId=#{param1}
+    </update>
+    <select id="selectAllEvaluate" resultMap="selectAllEvaluate">
+        select e.evaluateId,e.evaluateText,e.goodsId,e.review,e.reply,e.pjTime,u.userAccount,u.userNick,u.userName from evaluate e,user u  where e.userId=u.userId and goodsId=#{param1}
+    </select>
+    <select id="selectorderDetailIdByOrderIdAndGoodsId" resultType="java.lang.Integer">
+        select orderDetailId from orderdetails where orderId=#{param1} and goodsId=#{param2}
+    </select>
+</mapper>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<head>
+<title>热卖特惠</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Best Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link th:href="@{/huanji/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+<link th:href="@{/huanji/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+<script th:src="@{/huanji/js/jquery.min.js}"></script>
+<script th:src="@{/huanji/js/simpleCart.min.js}"></script>
+<script type="text/javascript" th:src="@{huanji/js/bootstrap-3.1.1.min.js}"></script>
+<!-- //for bootstrap working -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" thhref="@{/huanji/css/jquery.countdown.css}" />
+<link th:href="@{/huanji/css/animate.min.css}" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/huanji/layui/css/layui.css}"  media="all">
+	<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	<link rel="icon" th:href="@{/huanji/img/core-img/favicon.ico}">
+
+<script th:src="@{/huanji/js/wow.min.js}"></script>
+<script>
+ new WOW().init();
+</script>
+</head>
+	
+<body>
+
+<!--顶部导航条 -->
+<iframe th:src="@{/goods/heart}" width="1920px" height="45px"  style="border: none"></iframe>
+<!--悬浮搜索框-->
+<br/>
+<div class="hmtop">
+	<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe><!--->
+
+
+	<div class="clear"></div>
+</div>
+	<br>
+<!--轮播图-->
+<div class="layui-carousel" id="test10">
+	<div carousel-item="">
+		<a href="../home/introduction.html"><div><img th:src="@{/huanji/layui/images/2.jpg}"></div></a>
+		<a href="../home/introduction.html"><div><img th:src="@{/huanji/layui/images/3.jpg}"></div></a>
+		<a href="../home/introduction.html"><div><img th:src="@{/huanji/layui/images/2.jpg}"></div></a>
+	</div>
+</div>
+
+
+<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<div class="container"> 
+			<div class="banner-bottom-grids">
+				<div class="banner-bottom-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+					<div class="grid">
+						<figure class="effect-julia">
+							<img th:src="@{/huanji/images/4.jpg}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3>换季 <span>特惠</span><i>Special    benefit</i></h3>
+								<div>
+									<p>T恤全场9折起</p>
+									<p>短裤全称8.3折起</p>
+									<p>童装限时特惠</p>
+								</div>
+							</figcaption>			
+						</figure>
+					</div>
+				</div>
+				<div class="banner-bottom-grid-left1 animated wow slideInUp" data-wow-delay=".5s">
+					<div class="banner-bottom-grid-left-grid left1-grid grid-left-grid1">
+						<div class="banner-bottom-grid-left-grid1">
+							<img th:src="@{/huanji/images/1.jpg}" alt=" " class="img-responsive" />
+						</div>
+						<div class="banner-bottom-grid-left1-pos">
+							<p>Discount 85%</p>
+						</div>
+					</div>
+					<div class="banner-bottom-grid-left-grid left1-grid grid-left-grid1">
+						<div class="banner-bottom-grid-left-grid1">
+							<img th:src="@{/huanji/images/2.jpg}" alt=" " class="img-responsive" />
+						</div>
+						<div class="banner-bottom-grid-left1-position">
+							<div class="banner-bottom-grid-left1-pos1">
+								<p>Discount 60%</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="banner-bottom-grid-right animated wow slideInRight" data-wow-delay=".5s">
+					<div class="banner-bottom-grid-left-grid grid-left-grid1">
+						<div class="banner-bottom-grid-left-grid1">
+							<img th:src="@{/huanji/images/3.jpg}" alt=" " class="img-responsive" />
+						</div>
+						<div class="grid-left-grid1-pos">
+							<p>女士大衣<span>多买多惠
+							<br>优惠享不停</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //banner-bottom -->
+<!-- collections -->
+	<div class="new-collections">
+		<div class="container">
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">热卖 特惠</h3>
+			<!--<p class="est animated wow zoomIn" data-wow-delay=".5s">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia -->
+				<!--deserunt mollit anim id est laborum.</p>-->
+			<div class="new-collections-grids">
+				<div class="col-md-3 new-collections-grid">
+					<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+						<div class="new-collections-grid1-image">
+							<a href="single.html" class="product-image"><img th:src="${image1.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+
+
+
+
+							<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods1.goodsId}"/>
+							<a   class="goodsfoot">
+							<div class="new-collections-grid1-image-pos">
+
+								<div  class="item_add">查看详情</div>
+
+
+
+							</div>
+
+							</a>
+
+							<div class="new-collections-grid1-right">
+								<div class="rating">
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</div>
+
+						<!--商品名-->
+						<h4><strong th:text="${goods1.goodsName}"></strong></h4>
+						<!--商品介绍-->
+						<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+						<div class="new-collections-grid1-left simpleCart_shelfItem">
+							<input  type="hidden"  class="wwgoodsid" id="wwgoodsid" name="wwgoodsid"  th:value="${goods1.goodsId}"/>
+							<p><i>$<strong th:text="${goods1.goodsPrice}"></strong></i> <span class="item_price">$<strong th:text="${goods1.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+						</div>
+					</div>
+					<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+						<div class="new-collections-grid1-image">
+							<a href="single.html" class="product-image"><img th:src="${image2.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+
+
+							<input  type="hidden" name="footgoodsId" class="footgoodsId"  th:value="${goods2.goodsId}"/>
+							<a   class="goodsfoot">
+
+							<div class="new-collections-grid1-image-pos">
+								<div  class="item_add">查看详情</div>
+
+
+							</div>
+							</a>
+
+
+							<div class="new-collections-grid1-right">
+								<div class="rating">
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</div>
+						<h4><strong th:text="${goods2.goodsName}"></strong></h4>
+						<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+						<div class="new-collections-grid1-left simpleCart_shelfItem">
+							<input  type="hidden"  class="wwgoodsid1" id="wwgoodsid1" name="wwgoodsid1"  th:value="${goods2.goodsId}"/>
+							<p><i>$<strong th:text="${goods2.goodsPrice}"></strong></i><span class="item_price">$<strong th:text="${goods2.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys1" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 new-collections-grid">
+					<div class="new-collections-grid1 new-collections-grid1-image-width animated wow slideInUp" data-wow-delay=".5s">
+						<div class="new-collections-grid1-image">
+							<a href="single.html" class="product-image"><img th:src="${image.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+
+							<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods4.goodsId}"/>
+							<a   class="goodsfoot">
+
+							<div class="new-collections-grid1-image-pos new-collections-grid1-image-pos1">
+								<div  class="item_add">查看详情</div>
+							</div>
+							</a>
+
+							<div class="new-collections-grid1-right new-collections-grid1-right-rate">
+								<div class="rating">
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+							<div class="new-one">
+								<p>人气</p>
+							</div>
+						</div>
+
+						<h4><strong th:text="${goods.goodsName}"></strong></h4>
+						<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+						<div class="new-collections-grid1-left simpleCart_shelfItem">
+							<input  type="hidden"  class="wwgoodsid2" id="wwgoodsid2" name="wwgoodsid2"  th:value="${goods.goodsId}"/>
+							<p><i>$<strong th:text="${goods.goodsPrice}"></strong></i> <span class="item_price">$<strong th:text="${goods.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys2" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+						</div>
+
+					</div>
+					<div class="new-collections-grid-sub-grids">
+						<div class="new-collections-grid1-sub">
+							<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+								<div class="new-collections-grid1-image">
+									<a href="single.html" class="product-image"><img th:src="${image3.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+									<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods3.goodsId}"/>
+									<a   class="goodsfoot">
+									<div class="new-collections-grid1-image-pos">
+										<div  class="item_add">查看详情</div>
+									</div>
+									</a>
+									<div class="new-collections-grid1-right">
+										<div class="rating">
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/hunaji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+									</div>
+								</div>
+								<h4><strong th:text="${goods3.goodsName}"></strong></strong></h4>
+								<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+								<div class="new-collections-grid1-left simpleCart_shelfItem">
+									<input  type="hidden"  class="wwgoodsid3" id="wwgoodsid3" name="wwgoodsid3"  th:value="${goods3.goodsId}"/>
+									<p><i>$<strong th:text="${goods3.goodsPrice}"></strong></i><span class="item_price">$<strong th:text="${goods3.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys3" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+								</div>
+							</div>
+						</div>
+						<div class="new-collections-grid1-sub">
+							<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+								<div class="new-collections-grid1-image">
+									<a href="single.html" class="product-image"><img th:src="${image4.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+									<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods4.goodsId}"/>
+									<a   class="goodsfoot">
+									<div class="new-collections-grid1-image-pos">
+										查看详情
+									</div>
+									</a>
+									<div class="new-collections-grid1-right">
+										<div class="rating">
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="rating-left">
+												<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+									</div>
+								</div>
+								<h4><strong th:text="${goods4.goodsName}"></strong></h4>
+								<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+								<div class="new-collections-grid1-left simpleCart_shelfItem">
+									<input  type="hidden"  class="wwgoodsid4" id="wwgoodsid4" name="wwgoodsid4"  th:value="${goods4.goodsId}"/>
+									<p><i>$<strong th:text="${goods4.goodsPrice}"></strong></i><span class="item_price">$<strong th:text="${goods4.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys4" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="col-md-3 new-collections-grid">
+					<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+						<div class="new-collections-grid1-image">
+							<a href="single.html" class="product-image"><img th:src="${image5.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+							<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods5.goodsId}"/>
+							<a   class="goodsfoot">
+
+							<div class="new-collections-grid1-image-pos">
+								<div  class="item_add">查看详情</div>
+							</div>
+							</a>
+							<div class="new-collections-grid1-right">
+								<div class="rating">
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</div>
+						<h4><strong th:text="${goods5.goodsName}"></strong></h4>
+						<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+						<div class="new-collections-grid1-left simpleCart_shelfItem">
+							<input  type="hidden"  class="wwgoodsid5" id="wwgoodsid5" name="wwgoodsid5"  th:value="${goods5.goodsId}"/>
+							<p><i>$<strong th:text="${goods5.goodsPrice}"></strong></i> <span class="item_price">$<strong th:text="${goods5.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys5" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+						</div>
+					</div>
+					<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+						<div class="new-collections-grid1-image">
+							<a href="single.html" class="product-image"><img th:src="${image6.goodsPicMaster}" alt=" " class="img-responsive" /></a>
+							<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goods6.goodsId}"/>
+							<a   class="goodsfoot">
+							<div class="new-collections-grid1-image-pos">
+								<div  class="item_add">查看详情</div>
+							</div>
+							</a>
+							<div class="new-collections-grid1-right">
+								<div class="rating">
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="rating-left">
+										<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</div>
+						<h4><strong th:text="${goods6.goodsName}"></strong></h4>
+						<!--<p>Vel illum qui dolorem eum fugiat.</p>-->
+						<div class="new-collections-grid1-left simpleCart_shelfItem">
+							<input  type="hidden"  class="wwgoodsid6" id="wwgoodsid6" name="wwgoodsid6"  th:value="${goods6.goodsId}"/>
+							<p><i>$<strong th:text="${goods6.goodsPrice}"></strong></i> <span class="item_price">$<strong th:text="${goods6.goodsLastPrice}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;<a id="LikBuys6" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="timer">
+		<div class="container">
+			<div class="timer-grids">
+
+
+				<div class="col-md-8 timer-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+					<input  type="hidden" class="footgoodsId" name="footgoodsId" th:value="${goodsbottom.goodsId}"/>
+					<a   class="goodsfoot">
+						<h2><strong th:text="${goodsbottom.goodsName}"></strong></h2></a>
+					<div class="rating">
+						<div class="rating-left">
+							<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+						</div>
+						<div class="rating-left">
+							<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+						</div>
+						<div class="rating-left">
+							<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+						</div>
+						<div class="rating-left">
+							<img th:src="@{/huanji/images/2.png}" alt=" " class="img-responsive" />
+						</div>
+						<div class="rating-left">
+							<img th:src="@{/huanji/images/1.png}" alt=" " class="img-responsive" />
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="new-collections-grid1-left simpleCart_shelfItem timer-grid-left-price">
+						<p><i>$<strong th:text="${goodsbottom.goodsPrice}"></strong></i> <span class="item_price">$<strong  th:text="${goodsbottom.goodsLastPrice}"></strong></span></p>
+						<h4>实时优惠</h4>
+						<input  type="hidden"  class="wwgoodsid7" id="wwgoodsid7" name="wwgoodsid7"  th:value="${goodsbottom.goodsId}"/>
+						<p><a id="LikBuys7" title="点此按钮到下一步确认购买信息" class="item_add">立即购买</a>
+					</div>
+					<div id="counter"> </div>
+					<script th:src="@{/huanji/js/jquery.countdown.js}"></script>
+					<script th:src="@{/huanji/js/script.js}"></script>
+				</div>
+				<div class="col-md-4 timer-grid-right animated wow slideInRight" data-wow-delay=".5s">
+					<div class="timer-grid-right1">
+						<img th:src="${imagebottom.goodsPicMaster}" alt=" " class="img-responsive" />
+						<div class="timer-grid-right-pos">
+							<h4>Special Offer</h4>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+ //new-timer
+
+
+<script th:src="@{/huanji/layui/layui.js}" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script >
+    //        <!--<a th:href="@{/goods/good(goodsId=${goods.goodsId})}">-->
+
+    $(".goodsfoot").click(
+        function () {
+            var r=$(this).prevAll(".footgoodsId").val();
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/foot/insertfoot?goodsId="+r,
+                success: function (maps) {
+//                        console.info(map);
+
+//                        th:href="@{/goods/good(goodsId=${goods.goodsId})}
+                    window.location.href="/Luoqi/goods/good?goodsId="+r;
+//                        if (map.name=="0") {
+//
+//                            layer.msg("添加成功");
+
+
+//                        }
+//                        else {
+//                            alert("已收藏");
+//
+//
+//                        }
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+        }
+
+    );
+</script>
+
+<script>
+	layui.use(['carousel', 'form'], function(){
+		var carousel = layui.carousel
+				,form = layui.form;
+
+		//常规轮播
+		carousel.render({
+			elem: '#test1'
+			,arrow: 'always'
+		});
+
+		//改变下时间间隔、动画类型、高度
+		carousel.render({
+			elem: '#test2'
+			,interval: 1800
+			,anim: 'fade'
+			,height: '120px'
+		});
+
+		//设定各种参数
+		var ins3 = carousel.render({
+			elem: '#test3'
+		});
+		//图片轮播
+		carousel.render({
+			elem: '#test10'
+			,width: '1920px'
+			,height: '500px'
+			,interval: 5000
+		});
+		//事件
+		carousel.on('change(test4)', function(res){
+			console.log(res)
+		});
+
+		var $ = layui.$, active = {
+			set: function(othis){
+				var THIS = 'layui-bg-normal'
+						,key = othis.data('key')
+						,options = {};
+
+				othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+				options[key] = othis.data('value');
+				ins3.reload(options);
+			}
+		};
+
+		//监听开关
+		form.on('switch(autoplay)', function(){
+			ins3.reload({
+				autoplay: this.checked
+			});
+		});
+
+		$('.demoSet').on('keyup', function(){
+			var value = this.value
+					,options = {};
+			if(!/^\d+$/.test(value)) return;
+
+			options[this.name] = value;
+			ins3.reload(options);
+		});
+
+		//其它示例
+		$('.demoTest .layui-btn').on('click', function(){
+			var othis = $(this), type = othis.data('type');
+			active[type] ? active[type].call(this, othis) : '';
+		});
+	});
+    function num(i) {
+        var n = i.toFixed(1);
+        alert(n);
+    }
+</script>
+
+<script>
+
+
+    //立即购买
+
+    $("#LikBuys").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys1").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid1').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys2").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid2').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys3").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid3').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys4").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid4').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys5").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid5').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });    //立即购买
+
+    $("#LikBuys6").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid6').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });
+    $("#LikBuys7").click(
+        function () {
+            var num = 1;
+            var goodsId=document.getElementById('wwgoodsid7').value;
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/order/insertordergoods?goodsId="+goodsId+"&num="+num,
+                success: function (maps) {
+                    var ww=maps.orders;
+
+                    window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+        });
+</script>
+
+</body>
+</html>

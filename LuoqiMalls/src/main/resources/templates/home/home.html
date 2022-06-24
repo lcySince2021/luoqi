@@ -1,0 +1,1087 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>首页</title>
+
+	<link th:href="@{/css/amazeui.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/admin.css}" rel="stylesheet" type="text/css" />
+
+	<link th:href="@{/css/demo.css}" rel="stylesheet" type="text/css" />
+
+	<link th:href="@{/css/hmstyle.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/skin.css}" rel="stylesheet" type="text/css" />
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/amazeui.min.js}"></script>
+	<style>
+
+
+	</style>
+
+
+
+</head>
+
+<body >
+<div class="hmtop">
+	<!--顶部导航条 -->
+	<iframe th:src="@{/goods/heart}" width="1920px" height="36px"  style="border: none"></iframe>
+
+	<!--悬浮搜索框-->
+
+	<div class="nav white">
+		<!--<div class="logo">-->
+			<!--<img th:src="@{/images/logo.png}" /></div>-->
+		<div class="logoBig">
+			<li><img th:src="@{/duomai/images/x.png}" /></li>
+		</div>
+		<div class="search-bar pr">
+			<a name="index_none_header_sysc" href="#"></a>
+			<form th:action="@{/goods/search}">
+				<input id="searchInput" name="key" type="text" placeholder="搜索" autocomplete="off">
+				<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+			</form>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+</div>
+<div class="banner">
+	<!--轮播 -->
+	<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
+		<ul class="am-slides">
+			<li class="banner1" style="background-color: white"><a><img th:src="@{/images/luo2.jpg}"  style="width: 1020px"/></a></li>
+			<li class="banner2" style="background-color: white"><a><img th:src="@{/images/luo1.jpg}" style="width: 1020px"/></a></li>
+			<li class="banner3" style="background-color: white"><a><img th:src="@{/images/luo3.jpg}" style="width: 1020px"/></a></li>
+			<!--<li class="banner4" style="background-color: white"><a><img th:src="@{/images/ad4.jpg}" /></a></li>-->
+
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="shopNav">
+	<div class="slideall">
+
+		<div class="long-title"><span class="all-goods">全部分类</span></div>
+		<div class="nav-cont">
+			<ul>
+				<li class="index"><a th:href="@{/user/main}">首页</a></li>
+				<li class="qc"><a th:href="@{/miaosha/miaosha}">秒杀</a></li>
+				<li class="qc"><a th:href="@{/duomai/duomai}">多买多惠</a></li>
+				<li class="qc"><a th:href="@{/huanji/huanji}">热卖特惠</a></li>
+				<li class="qc last"><a th:href="@{/maskgoods/integersearch}">积分商城</a></li>
+				<li class="qc"><a th:href="@{/volume/youhui}">优惠卷</a></li>
+
+				<!--<a th:href="@{/user/home}"><li class="index"><font size="4">首页&nbsp;&nbsp;&nbsp;&nbsp;</font></li></a>-->
+				<!--<a th:href="@{/miaosha/miaosha}"><li class="qc"><font size="4">秒杀&nbsp;&nbsp;&nbsp;&nbsp;</font></li></a>-->
+				<!--<a th:href="@{/url/duomai}"><li class="qc"><font size="4">多买多惠&nbsp;&nbsp;&nbsp;&nbsp;</font></li></a>-->
+				<!--<a th:href="@{/huanji/huanji}"><li class="qc"><font size="4">换季特惠&nbsp;&nbsp;&nbsp;&nbsp;</font></li></a>-->
+				<!--<a th:href="@{/maskgoods/integersearch}"><li class="qc last"><font size="4">积分商城&nbsp;&nbsp;&nbsp;&nbsp;</font></li></a>-->
+				<!--<a th:href="@{/volume/youhui}"><li class="qc"><font size="4">优惠卷</font></li></a>-->
+			</ul>
+			<div class="nav-extra">
+				<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b><a th:href="@{/volume/personselectvolume}">我的卷包</a>
+				<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+			</div>
+		</div>
+
+		<!--侧边导航 -->
+		<div id="nav" class="navfull">
+			<div class="area clearfix">
+				<div class="category-content" id="guide_2">
+
+					<div class="category">
+						<ul class="category-list" id="js_climit_li">
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px">
+										<!--<i><img src="../images/cake.png"></i>-->
+										<a th:href="@{/goods/search1?p=男装}" class="ml-22"  title="男装">男装</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=男装&s=卫衣}"><span>卫衣</span></a></dd>
+														<dd><a title="T恤" th:href="@{/goods/search2?p=男装&s=外套男}"><span>外套男</span></a></dd>
+														<dd><a title="裤子" th:href="@{/goods/search2?p=男装&s=裤子}"><span>裤子</span></a></dd>
+													</dl>
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=男装&ss=唐狮}" rel="nofollow"><span  class="red" >唐狮</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=男装&ss=海澜之家}" rel="nofollow"><span >海澜之家</span></a></dd>
+														<dd><a  title="飞彦大厂直供" target="_blank" th:href="@{/goods/search3?p=男装&ss=七匹狼}" rel="nofollow"><span  class="red" >七匹狼</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=女装}" class="ml-22">女装</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=女装&s=连衣裙}"><span>连衣裙</span></a></dd>
+														<dd><a title="T恤" th:href="@{/goods/search2?p=女装&s=外套女}"><span>外套女</span></a></dd>
+														<dd><a title="牛仔裤" th:href="@{/goods/search2?p=女装&s=棉袄}"><span>棉袄</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=女装&ss=OVBE}" rel="nofollow"><span  class="red" >OVBE</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=女装&ss=曼茵}" rel="nofollow"><span >曼茵</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=男鞋}" class="ml-22" title="男鞋" name="p">男鞋</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=男鞋&s=运动鞋男}"><span>运动鞋男</span></a></dd>
+														<dd><a title="T恤" th:href="@{/goods/search2?p=男鞋&s=皮鞋男}"><span>皮鞋男</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=男鞋&ss=MIZUNO}" rel="nofollow"><span  class="red" >MIZUNO</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=男鞋&ss=361}" rel="nofollow"><span >361</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=女鞋}" class="ml-22" title="女鞋" name="p">女鞋</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=女鞋&s=运动鞋女}"><span>运动鞋女</span></a></dd>
+														<dd><a title="皮鞋" th:href="@{/goods/search2?p=女鞋&s=皮鞋女}"><span>皮鞋女</span></a></dd>
+														<dd><a title="平底鞋" th:href="@{/goods/search2?p=女鞋&s=平底鞋}"><span>平底鞋</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=女鞋&ss=ZHR}" rel="nofollow"><span  class="red" >ZHR</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=女鞋&ss=森马}" rel="nofollow"><span >森马</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=童装}" class="ml-22" title="童装" name="p" >童装</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=童装&s=女童}"><span>女童</span></a></dd>
+														<dd><a title="T恤" th:href="@{/goods/search2?p=童装&s=男童}"><span>男童</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=童装&ss=安踏}" rel="nofollow"><span  class="red" >安踏</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=童装&ss=361}" rel="nofollow"><span >361</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=童鞋}" class="ml-22" title="童鞋" name="p">童鞋</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=童鞋&s=童鞋女}"><span>童鞋女</span></a></dd>
+														<dd><a title="T恤" th:href="@{/goods/search2?p=童鞋&s=童鞋男}"><span>童鞋男</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=童鞋&ss=安踏}"  rel="nofollow"><span  class="red" >安踏</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=童鞋&ss=361}"  rel="nofollow"><span >361</span></a></dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=箱包}" class="ml-22" title="箱包">箱包</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=箱包&s=旅行箱}"><span>旅行箱</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=箱包&ss=小米}" rel="nofollow"><span  class="red" >小米</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=箱包&ss=爱华仕}" rel="nofollow"><span >爱华仕</span></a></dd>
+
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=配饰}" class="ml-22" title="配饰">配饰</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=配饰&s=项链}"><span>项链</span></a></dd>
+														<dd><a title="手链" th:href="@{/goods/search2?p=配饰&s=手链}"><span>手链</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=配饰&ss=卡蒂罗}" rel="nofollow"><span  class="red" >卡蒂罗</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=配饰&ss=依恋}" rel="nofollow"><span >依恋</span></a></dd>
+
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+							<li class="appliance js_toggle relative" style="height: 50px">
+								<div class="category-info">
+									<h3 class="category-name b-category-name" style="margin-top: 3px"><a th:href="@{/goods/search1?p=睡衣}" class="ml-22" title="睡衣">睡衣</a></h3>
+									<em style="margin-top: 5px">&gt;</em></div>
+								<div class="menu-item menu-in top">
+									<div class="area-in">
+										<div class="area-bg">
+											<div class="menu-srot">
+												<div class="sort-side">
+													<dl class="dl-sort">
+														<dt ><span title="蛋糕">当季热卖</span></dt>
+														<dd><a title="新品推荐" th:href="@{/goods/search2?p=睡衣&s=男士}"><span>男士</span></a></dd>
+														<dd><a title="女士" th:href="@{/goods/search2?p=睡衣&s=女士}"><span>女士</span></a></dd>
+														<dd><a title="情侣装" th:href="@{/goods/search2?p=睡衣&s=情侣装}"><span>情侣装</span></a></dd>
+													</dl>
+
+
+												</div>
+												<div class="brand-side">
+													<dl class="dl-sort"><dt><span>实力商家</span></dt>
+														<dd><a  title="呵官方旗舰店" target="_blank" th:href="@{/goods/search3?p=睡衣&ss=南极人}" rel="nofollow"><span  class="red" >南极人</span></a></dd>
+														<dd><a  title="格瑞旗舰店" target="_blank" th:href="@{/goods/search3?p=睡衣&ss=北极绒}" rel="nofollow"><span >北极绒</span></a></dd>
+
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<b class="arrow"></b>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!--轮播-->
+
+		<script type="text/javascript">
+            (function() {
+                $('.am-slider').flexslider();
+            });
+            $(document).ready(function() {
+                $("li").hover(function() {
+                    $(".category-content .category-list li.first .menu-in").css("display", "none");
+                    $(".category-content .category-list li.first").removeClass("hover");
+                    $(this).addClass("hover");
+                    $(this).children("div.menu-in").css("display", "block")
+                }, function() {
+                    $(this).removeClass("hover")
+                    $(this).children("div.menu-in").css("display", "none")
+                });
+            })
+		</script>
+
+
+
+		<!--小导航 -->
+		<div class="am-g am-g-fixed smallnav">
+			<div class="am-u-sm-3">
+				<a href="sort.html"><img th:src="@{/images/navsmall.jpg}" />
+					<div class="title">商品分类</div>
+				</a>
+			</div>
+			<div class="am-u-sm-3">
+				<a href="#"><img th:src="@{/images/huismall.jpg}" />
+					<div class="title">大聚惠</div>
+				</a>
+			</div>
+			<div class="am-u-sm-3">
+				<a href="#"><img th:src="@{/images/mansmall.jpg}" />
+					<div class="title">个人中心</div>
+				</a>
+			</div>
+			<div class="am-u-sm-3">
+				<a href="#"><img th:src="@{/images/moneysmall.jpg}" />
+					<div class="title">投资理财</div>
+				</a>
+			</div>
+		</div>
+
+		<!--走马灯 -->
+
+		<div class="marqueen" style="width:200px;height: 300px;background-color: sandybrown">
+			<div th:if="${session.user != null}"  >
+			<div th:if="${session.user.userVip == 1}"  >
+						<span class="marqueen-title">
+							<a th:href="@{/url/huiyuanhuikuan}"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成为会员</p></a>
+						<p>&nbsp;&nbsp;&nbsp;立享全场9折折扣</p></span></div>
+			<div th:unless="${session.user.userVip == 1}">
+						<span class="marqueen-title">
+							<a ><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;会员您好</p></a>
+						<p>&nbsp;&nbsp;&nbsp;已享全场9折折扣</p></span>
+
+			</div>
+			</div>
+			<br><br>
+			<img th:src="@{/images/luovip.jpg}"></a>
+			<div class="demo"></div></div>
+
+
+
+
+
+
+
+
+
+
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript">
+        if ($(window).width() < 640) {
+            function autoScroll(obj) {
+                $(obj).find("ul").animate({
+                    marginTop: "-39px"
+                }, 500, function() {
+                    $(this).css({
+                        marginTop: "0px"
+                    }).find("li:first").appendTo(this);
+                })
+            }
+            $(function() {
+                setInterval('autoScroll(".demo")', 3000);
+            })
+        }
+	</script>
+</div>
+<div class="shopMainbg" >
+	<div class="shopMain" id="shopmain">
+
+		<!--今日推荐 -->
+
+		<div class="am-g am-g-fixed recommendation">
+			<div class="clock am-u-sm-3" >
+
+			<p>&nbsp;&nbsp;&nbsp;今日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热卖<br>&nbsp;&nbsp;&nbsp;推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开启</p>
+		</div>
+			<div class="am-u-sm-4 am-u-lg-3 ">
+				<div class="info ">
+					<a th:href="@{/goods/huodong}">
+						<h3>嘻哈风格</h3>
+						<h4>尽享时尚</h4>
+					</a>
+				</div>
+				<div class="recommendationMain one">
+					<a th:href="@{/goods/huodong}"><img th:src="@{/images/e.jpg} "/></a>
+				</div></a>
+			</div>
+			<div class="am-u-sm-4 am-u-lg-3 ">
+
+				<a th:href="@{/goods/search1?p=配饰}">
+					<div class="info ">
+						<h3>饰你如宝</h3>
+						<h4>爱不打烊</h4>
+					</div>
+					<div class="recommendationMain two">
+						<img th:src="@{/images/w.jpg }"/>
+					</div></a>
+			</div>
+			<div class="am-u-sm-4 am-u-lg-3 ">
+				<a th:href="@{/goods/huodong1}">
+					<div class="info ">
+						<h3>新品首发</h3>
+						<h4>潮流先锋</h4>
+					</div>
+					<div class="recommendationMain three">
+						<img th:src="@{/images/q.jpg} " />
+					</div></a>
+			</div>
+
+		</div>
+
+		<div class="clear "></div>
+	<!--热门活动 -->
+
+	<div class="am-container activity ">
+		<div class="shopTitle ">
+			<h4>活动</h4>
+			<h3>每期活动 优惠享不停 </h3>
+			<span class="more ">
+                              <a href="# ">全部活动<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                        </span>
+		</div>
+		<div class="am-g am-g-fixed ">
+			<div class="am-u-sm-3 ">
+				<div class="icon-sale one "></div>
+				<a th:href="@{/miaosha/miaosha}">
+					<h4>秒杀</h4>
+					<div class="activityMain ">
+						<img th:src="@{/images/r.jpg} " />
+					</div>
+					<div class="info ">
+						<h3>限时秒杀，爆款直降</h3>
+					</div>
+				</a>
+			</div>
+			<div class="am-u-sm-3 ">
+			<div class="icon-sale two "></div>
+			<a th:href="@{/duomai/duomai}"><h4>特惠</h4>
+				<div class="activityMain ">
+					<img th:src="@{/images/t.jpg} " />
+				</div>
+				<div class="info ">
+					<h3>优惠风暴，三件8折</h3>
+				</div>
+			</a>
+		</div>
+			<div class="am-u-sm-3 ">
+		<div class="icon-sale three "></div>
+		<a th:href="@{/huanji/huanji}"><h4>热卖</h4>
+			<div class="activityMain ">
+				<img th:src="@{/images/y.jpg} " />
+			</div>
+			<div class="info ">
+				<h3>热卖风暴，席卷全场</h3>
+			</div>
+		</a>
+	</div>
+			<div class="am-u-sm-3 last ">
+	<div class="icon-sale four"></div>
+	<a th:href="@{/maskgoods/integersearch}"><h4>积分商城</h4>
+		<div class="activityMain ">
+			<img th:src="@{/images/u.jpg} " />
+		</div>
+		<div class="info ">
+			<h3>积分商城</h3>
+		</div>
+
+	</a>
+</div>
+		</div>
+
+<div class="clear "></div>
+<div class="am-g am-g-fixed recommendation" style="background-color: #f0f3ef">
+
+	<iframe th:src="@{/shouye/remai}" height="550" width="1250"></iframe>
+
+</div>
+
+<div class="am-g am-g-fixed recommendation" style="background-color: #f0f3ef">
+
+	<iframe th:src="@{/url/remai1}" height="600" width="1220" style="border: none"></iframe>
+
+</div>
+
+<div id="f1">
+	<!--甜点-->
+	<div class="am-container ">
+		<div class="shopTitle ">
+			<h4>服装</h4>
+			<h3></h3>
+			<div class="today-brands ">
+				<a th:href="@{/goods/search2?p=女装&s=连衣裙}">连衣裙</a>
+				<a th:href="@{/goods/search2?p=男装&s=卫衣}">卫衣</a>
+				<a th:href="@{/goods/search2?p=男装&s=裤子}">裤子 </a>
+				<a th:href="@{/goods/search2?p=童装&s=男童}">男童</a>
+				<a th:href="@{/goods/search2?p=童装&s=女童}">女童</a>
+				<a th:href="@{/goods/search1?p=睡衣}">睡衣</a>
+			</div>
+			<span class="more ">
+                    <a>更多好货<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                        </span>
+		</div>
+	</div>
+
+	<div class="am-g am-g-fixed floodFour">
+		<div class="am-u-sm-5 am-u-md-4 text-one list ">
+			<div class="word">
+				<a class="outer" th:href="@{/goods/search2?p=女装&s=连衣裙}"><span class="inner"><b class="text">连衣裙</b></span></a>
+				<a class="outer" th:href="@{/goods/search2?p=男装&s=卫衣}"><span class="inner"><b class="text">卫衣</b></span></a>
+				<a class="outer" th:href="@{/goods/search2?p=男装&s=裤子}"><span class="inner"><b class="text">裤子</b></span></a>
+				<a class="outer" th:href="@{/goods/search2?p=童装&s=男童}"><span class="inner"><b class="text">男童</b></span></a>
+				<a class="outer" th:href="@{/goods/search2?p=童装&s=女童}"><span class="inner"><b class="text">女童</b></span></a>
+				<a class="outer" th:href="@{/goods/search1?p=睡衣}"><span class="inner"><b class="text">睡衣</b></span></a>
+			</div>
+
+			<div class="outer-con ">
+				<div class="title ">
+					<!--开抢啦！-->
+				</div>
+				<div class="sub-title ">
+					<!--零食大礼包-->
+				</div>
+			</div>
+			<img src="http://ph8kqk6vv.bkt.clouddn.com/cloth1.jpg" />
+
+			<div class="triangle-topright"></div>
+		</div>
+
+		<div class="am-u-sm-7 am-u-md-4 text-two sug">
+			<div class="outer-con ">
+				<div class="title ">
+					休闲潮流衬衣
+				</div>
+				<div class="sub-title ">
+					¥13.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=196}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth2.jpg" /></a>
+		</div>
+
+		<div class="am-u-sm-7 am-u-md-4 text-two">
+			<div class="outer-con ">
+				<div class="title ">
+					时尚风潮卫衣
+				</div>
+				<div class="sub-title ">
+					¥13.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=197}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth3.jpg"/></a>
+		</div>
+
+
+		<div class="am-u-sm-3 am-u-md-2 text-three big">
+			<div class="outer-con ">
+				<div class="title ">
+					魅力风衣
+				</div>
+				<div class="sub-title ">
+					¥4.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=198}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth4.jpg" /></a>
+		</div>
+
+		<div class="am-u-sm-3 am-u-md-2 text-three sug">
+			<div class="outer-con ">
+				<div class="title ">
+					前卫T恤
+				</div>
+				<div class="sub-title ">
+					¥4.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=199}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth5.jpg" /></a>
+		</div>
+
+		<div class="am-u-sm-3 am-u-md-2 text-three ">
+			<div class="outer-con ">
+				<div class="title ">
+					精选夹克
+				</div>
+				<div class="sub-title ">
+					¥4.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=200}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth6.jpg" /></a>
+		</div>
+
+		<div class="am-u-sm-3 am-u-md-2 text-three last big ">
+			<div class="outer-con ">
+				<div class="title ">
+					潮流长袖
+				</div>
+				<div class="sub-title ">
+					¥4.8
+				</div>
+				<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+			</div>
+			<a th:href="@{/goods/good?goodsId=201}"><img src="http://ph8kqk6vv.bkt.clouddn.com/cloth7.jpg" /></a>
+		</div>
+
+	</div>
+	<div class="clear "></div>
+</div>
+
+
+
+
+		<div id="f2">
+			<!--甜点-->
+
+			<div class="am-container ">
+				<div class="shopTitle ">
+					<h4>鞋子</h4>
+					<h3></h3>
+					<div class="today-brands ">
+						<a th:href="@{/goods/search2?p=男鞋&s=运动鞋男}">运动鞋男</a>
+						<a th:href="@{/goods/search2?p=女鞋&s=运动鞋女}">运动鞋女</a>
+						<a th:href="@{/goods/search2?p=女鞋&s=平底鞋}">平底鞋</a>
+						<a th:href="@{/goods/search2?p=男鞋&s=皮鞋男}">皮鞋男</a>
+						<a th:href="@{/goods/search2?p=童鞋&s=童鞋男}">童鞋男</a>
+						<a th:href="@{/goods/search2?p=童鞋&s=童鞋女}">童鞋女</a>
+					</div>
+					<span class="more ">
+                    <a>更多好货<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                        </span>
+				</div>
+			</div>
+
+			<div class="am-g am-g-fixed floodFour">
+				<div class="am-u-sm-3 am-u-md-2 text-three last big ">
+					<div class="outer-con ">
+						<div class="title ">
+							七彩炫彩板鞋
+						</div>
+						<div class="sub-title ">
+							¥4.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=202}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe2.jpg" /></a>
+				</div>
+
+
+				<div class="am-u-sm-7 am-u-md-4 text-two sug">
+					<div class="outer-con ">
+						<div class="title ">
+							时尚热卖休闲鞋
+						</div>
+						<div class="sub-title ">
+							¥13.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=203}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe3.jpg" /></a>
+				</div>
+
+				<div class="am-u-sm-7 am-u-md-4 text-two">
+					<div class="outer-con ">
+						<div class="title ">
+							魅力诱惑厚底鞋
+						</div>
+						<div class="sub-title ">
+							¥13.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=204}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe4.jpg" /></a>
+				</div>
+
+
+				<div class="am-u-sm-3 am-u-md-2 text-three big">
+					<div class="outer-con ">
+						<div class="title ">
+							经典三条杠运动鞋
+						</div>
+						<div class="sub-title ">
+							¥4.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=205}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe5.jpg" /></a>
+				</div>
+
+				<div class="am-u-sm-3 am-u-md-2 text-three sug">
+					<div class="outer-con ">
+						<div class="title ">
+							成熟风度皮鞋
+						</div>
+						<div class="sub-title ">
+							¥4.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=206}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe6.jpg" /></a>
+				</div>
+
+				<div class="am-u-sm-3 am-u-md-2 text-three ">
+					<div class="outer-con ">
+						<div class="title ">
+							嘻哈风格
+						</div>
+						<div class="sub-title ">
+							¥4.8
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a th:href="@{/goods/good?goodsId=207}"><img src="http://ph8kqk6vv.bkt.clouddn.com/shoe7.jpg" /></a>
+				</div>
+				<div class="am-u-sm-5 am-u-md-4 text-one list ">
+					<div class="word">
+						<a class="outer" th:href="@{/goods/search2?p=男鞋&s=运动鞋男}"><span class="inner"><b class="text">运动鞋男</b></span></a>
+						<a class="outer" th:href="@{/goods/search2?p=女鞋&s=运动鞋女}"><span class="inner"><b class="text">运动鞋女</b></span></a>
+						<a class="outer" th:href="@{/goods/search2?p=女鞋&s=平底鞋}"><span class="inner"><b class="text">平底鞋</b></span></a>
+						<a class="outer" th:href="@{/goods/search2?p=男鞋&s=皮鞋男}"><span class="inner"><b class="text">皮鞋男</b></span></a>
+						<a class="outer" th:href="@{/goods/search2?p=童鞋&s=童鞋男}"><span class="inner"><b class="text">童鞋男</b></span></a>
+						<a class="outer" th:href="@{/goods/search2?p=童鞋&s=童鞋女}"><span class="inner"><b class="text">童鞋女</b></span></a>
+					</div>
+					<a href="# ">
+						<div class="outer-con ">
+							<div class="title ">
+								<!--开抢啦！-->
+							</div>
+							<div class="sub-title ">
+								<!--零食大礼包-->
+							</div>
+						</div>
+						<img src="http://ph8kqk6vv.bkt.clouddn.com/shoe1.jpg" />
+					</a>
+					<div class="triangle-topright"></div>
+				</div>
+				<!--<div class="am-u-sm-3 am-u-md-2 text-three last big ">-->
+				<!--<div class="outer-con ">-->
+				<!--<div class="title ">-->
+				<!--鞋子-->
+				<!--</div>-->
+				<!--<div class="sub-title ">-->
+				<!--¥4.8-->
+				<!--</div>-->
+				<!--<i class="am-icon-shopping-basket am-icon-md  seprate"></i>-->
+				<!--</div>-->
+				<!--<a href="# "><img src="../images/鞋子7.jpg" /></a>-->
+				<!--</div>-->
+
+			</div>
+			<div class="clear "></div>
+
+</div>
+
+
+<!--<div id="f3">-->
+	<!--&lt;!&ndash;坚果&ndash;&gt;-->
+
+<!--</div>-->
+
+
+<!--<div id="f4">-->
+	<!--&lt;!&ndash;甜点&ndash;&gt;-->
+
+<!--</div>-->
+
+
+<!--<div id="f5">-->
+
+<!--</div>-->
+
+
+
+
+<!--<div id="f6">-->
+	<!--&lt;!&ndash;甜点&ndash;&gt;-->
+
+<!--</div>-->
+
+
+
+<!--<div id="f7">-->
+	<!--&lt;!&ndash;甜点&ndash;&gt;-->
+
+
+
+
+	<div class="footer ">
+		<div class="footer-hd ">
+			<p>
+
+			</p>
+		</div></div>
+	<!--<div class="footer-bd ">-->
+	<!--<p>-->
+	<!--<a href="# ">关于恒望</a>-->
+	<!--<a href="# ">合作伙伴</a>-->
+	<!--<a href="# ">联系我们</a>-->
+	<!--<a href="# ">网站地图</a>-->
+	<!--<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>-->
+	<!--</p>-->
+	<!--</div>-->
+	<!--</div>-->
+
+</div>
+</div>
+	<iframe th:src="@{/foot/bottom}"  width="1920px;" height="656px;"  style="border: none"></iframe>
+<!--引导 -->
+<div class="navCir">
+	<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
+	<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
+	<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
+	<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
+</div>
+
+
+<!--菜单 -->
+<div class=tip style="border: none">
+	<div th:if="${session.user != null}"  >
+	<div id="sidebar">
+		<div id="wrap">
+			<div id="prof" class="item ">
+				<a th:href="@{/user/showInformation}">
+					<span class="setting "></span>
+				</a>
+				<div class="ibar_login_box status_login ">
+					<div class="avatar_box ">
+						<p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>
+						<ul class="user_info ">
+							<li>用户名sl1903</li>
+							<li>级&nbsp;别普通会员</li>
+						</ul>
+					</div>
+					<div class="login_btnbox ">
+						<a th:href="@{/order/order}" class="login_order ">我的订单</a>
+						<a th:href="@{/collect/collectsearch(userId=${session.user.userId})}" class="login_favorite ">我的收藏</a>
+					</div>
+					<i class="icon_arrow_white "></i>
+				</div>
+
+			</div>
+			<div id="shopCart " class="item ">
+				<a th:href="@{/cart/search(userId=${session.user.userId})}">
+					<span class="message "></span>
+				</a>
+				<p>
+					购物车
+				</p>
+				<p class="cart_num ">
+					<em th:text="${usercartnum}" style="color: white"></em>
+				</p>
+			</div>
+			<div id="asset " class="item ">
+				<a th:href="@{/volume/personselectvolume}">
+					<span class="view "></span>
+				</a>
+				<div class="mp_tooltip ">
+					我的资产
+					<i class="icon_arrow_right_black "></i>
+				</div>
+			</div>
+
+			<div id="foot " class="item ">
+				<a th:href="@{/foot/getfoot(userId=${session.user.userId})}">
+					<span class="zuji "></span>
+				</a>
+				<div class="mp_tooltip ">
+					我的足迹
+					<i class="icon_arrow_right_black "></i>
+				</div>
+			</div>
+
+			<div id="brand " class="item ">
+				<a th:href="@{/collect/collectsearch(userId=${session.user.userId})}">
+					<span class="wdsc "><img src="../images/wdsc.png " /></span>
+				</a>
+				<div class="mp_tooltip ">
+					我的收藏
+					<i class="icon_arrow_right_black "></i>
+				</div>
+			</div>
+
+			<!--<div id="broadcast " class="item ">-->
+				<!--<a href="# ">-->
+					<!--<span class="chongzhi "><img src="../images/chongzhi.png " /></span>-->
+				<!--</a>-->
+				<!--<div class="mp_tooltip ">-->
+					<!--我要充值-->
+					<!--<i class="icon_arrow_right_black "></i>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<div class="quick_toggle ">
+				<!--<li class="qtitem ">-->
+					<!--<a href="# "><span class="kfzx "></span></a>-->
+					<!--<div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>-->
+				<!--</li>-->
+				<!--二维码 -->
+				<li class="qtitem ">
+					<a href="#none "><span class="mpbtn_qrcode "></span></a>
+					<div class="mp_qrcode " style="display:none; "><img src="../images/weixin_code_145.png " /><i class="icon_arrow_white "></i></div>
+				</li>
+				<li class="qtitem ">
+					<a href="#top " class="return_top "><span class="top "></span></a>
+				</li>
+			</div>
+
+			<!--回到顶部 -->
+			<div id="quick_links_pop " class="quick_links_pop hide "></div>
+
+		</div>
+
+	</div>
+	</div>
+	<div id="prof-content " class="nav-content ">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			我
+		</div>
+	</div>
+	<div id="shopCart-content " class="nav-content ">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			购物车
+		</div>
+	</div>
+	<div id="asset-content " class="nav-content ">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			资产
+		</div>
+
+		<div class="ia-head-list ">
+			<a href="# " target="_blank " class="pl ">
+				<div class="num ">0</div>
+				<div class="text ">优惠券</div>
+			</a>
+			<a href="# " target="_blank " class="pl ">
+				<div class="num ">0</div>
+				<div class="text ">红包</div>
+			</a>
+			<a href="# " target="_blank " class="pl money ">
+				<div class="num ">￥0</div>
+				<div class="text ">余额</div>
+			</a>
+		</div>
+
+	</div>
+	<div id="foot-content " class="nav-content ">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			足迹
+		</div>
+	</div>
+	<div id="brand-content " class="nav-content ">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			收藏
+		</div>
+	</div>
+	<div id="broadcast-content " class="nav-content " style="border: none;margin-top: 35">
+		<div class="nav-con-close ">
+			<i class="am-icon-angle-right am-icon-fw "></i>
+		</div>
+		<div>
+			充值
+		</div>
+	</div>
+</div>
+<script>
+    window.jQuery || document.write('<script src="basic/js/jquery.min.js "><\/script>');
+</script>
+<script type="text/javascript " src="../basic/js/quick_links.js "></script>
+</body>
+
+</html>

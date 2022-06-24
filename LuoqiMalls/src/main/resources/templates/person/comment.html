@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>评价管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" th:href="@{/layui/css/res.layui.com/layui/dist/css/layui.css}"  media="all">
+		<link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+		<link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+		<link th:href="@{AmazeUI-2.4.2/assets/css/admin.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{AmazeUI-2.4.2/assets/css/amazeui.css}" rel="stylesheet" type="text/css">
+
+		<link th:href="@{/css/personal.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{/css/cmstyle.css}" rel="stylesheet" type="text/css">
+
+		<script th:src="@{AmazeUI-2.4.2/assets/js/jquery.min.js}"></script>
+		<script th:src="@{AmazeUI-2.4.2/assets/js/amazeui.js}"></script>
+		<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+            layui.use('element', function(){
+                var $ = layui.jquery
+                    ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+                //触发事件
+                var active = {
+                    tabAdd: function(){
+                        //新增一个Tab项
+                        element.tabAdd('demo', {
+                            title: '新选项'+ (Math.random()*1000|0) //用于演示
+                            ,content: '内容'+ (Math.random()*1000|0)
+                            ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                        })
+                    }
+                    ,tabDelete: function(othis){
+                        //删除指定Tab项
+                        element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                        othis.addClass('layui-btn-disabled');
+                    }
+                    ,tabChange: function(){
+                        //切换到指定Tab项
+                        element.tabChange('demo', '22'); //切换到：用户管理
+                    }
+                };
+
+                $('.site-demo-active').on('click', function(){
+                    var othis = $(this), type = othis.data('type');
+                    active[type] ? active[type].call(this, othis) : '';
+                });
+
+                //Hash地址的定位
+                var layid = location.hash.replace(/^#test=/, '');
+                element.tabChange('test', layid);
+
+                element.on('tab(test)', function(elem){
+                    location.hash = 'test='+ $(this).attr('lay-id');
+                });
+
+            });
+		</script>
+		<style>
+			.c1{
+				padding-left: 20px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--头 -->
+		<iframe th:src="@{/goods/heart}" width="1920px" height="45px"  style="border: none"></iframe>
+
+		<div class="hmtop">
+			<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe><!--->
+
+
+			<div class="clear"></div>
+		</div>		<!--头 -->
+		<header>
+			<article>
+				<div class="mt-logo">
+					<!--顶部导航条 -->
+
+
+					<div class="clear"></div>
+				</div>
+				</div>
+			</article>
+		</header>
+
+		<div style=" margin-left: 100px;width: 1800px; height: 30px; border: none;background-color:silver">  </div>
+
+		<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="user-comment">
+						<!--标题 -->
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">评价管理</strong> / <small>Manage&nbsp;Comment</small></div>
+						</div>
+						<hr/>
+
+						<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+							<ul class="layui-tab-title">
+								<li class="layui-this">所有评价</li>
+								<li>可追评</li>
+							</ul>
+							<div class="layui-tab-content" style="height: 100px;">
+								<div class="layui-tab-item layui-show">
+
+									<div class="layui-row">
+										<div class="layui-col-xs1">
+											<div class="grid-demo grid-demo-bg1" align="center">图片</div>
+										</div>
+										<div class="layui-col-xs3">
+											<div class="grid-demo" align="center">商品名</div>
+										</div>
+										<div class="layui-col-xs3">
+											<div class="grid-demo grid-demo-bg1" align="center">评价</div>
+										</div>
+										<div class="layui-col-xs2">
+											<div class="grid-demo" align="center">商家回复</div>
+										</div>
+										<div class="layui-col-xs3">
+											<div class="grid-demo" align="center">追评</div>
+										</div>
+
+									</div>
+									<div class="layui-row" th:each="page:${pageInfo.list}">
+										<div class="layui-col-xs1">
+											<div class="grid-demo grid-demo-bg1" align="center" >
+												<img th:src="${page.goods.image.goodsPicMaster}" height="60px" width="60px"/>
+											</div>
+										</div>
+										<div class="layui-col-xs3 c1">
+											<div class="grid-demo " th:text="${page.goods.goodsName}"></div>
+										</div>
+										<div class="layui-col-xs3 c1">
+											<div class="grid-demo grid-demo-bg1" th:text="${page.evaluateText}"></div>
+										</div>
+										<div class="layui-col-xs2 c1">
+											<div class="grid-demo" th:text="${page.reply}"></div>
+										</div>
+										<div class="layui-col-xs3 c1">
+											<div class="grid-demo" th:text="${page.review}"></div>
+										</div>
+
+									</div>
+									<div style="float: right">
+										共 <b th:text="${pageInfo.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=1,userId=${userId})}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo.prePage},userId=${userId})}" th:if="${!pageInfo.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+										当前第<span th:text="${pageInfo.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo.nextPage},userId=${userId})}" th:if="${!pageInfo.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo.pages},userId=${userId})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									</div>
+								</div>
+								<div class="layui-tab-item">
+									<div class="layui-row">
+										<div class="layui-col-xs2">
+											<div class="grid-demo grid-demo-bg1" align="center">图片</div>
+										</div>
+										<div class="layui-col-xs4">
+											<div class="grid-demo" align="center">商品名</div>
+										</div>
+										<div class="layui-col-xs3">
+											<div class="grid-demo grid-demo-bg1" align="center">评价</div>
+										</div>
+										<div class="layui-col-xs3">
+											<div class="grid-demo" align="center">追评</div>
+										</div>
+									</div>
+									<div class="layui-row" th:each="page1:${pageInfo1.list}">
+										<div class="layui-col-xs2">
+											<div class="grid-demo grid-demo-bg1" align="center">
+												<img th:src="${page1.goods.image.goodsPicMaster}" height="60px" width="60px"/>
+											</div>
+										</div>
+										<div class="layui-col-xs4 c1">
+											<div class="grid-demo " th:text="${page1.goods.goodsName}"></div>
+										</div>
+										<div class="layui-col-xs3 c1" style="padding-left: 25px">
+											<div class="grid-demo grid-demo-bg1" th:text="${page1.evaluateText}"></div>
+										</div>
+										<div class="layui-col-xs3 c1">
+											<div class="grid-demo" align="center">
+												<form th:action="@{/pingjia/updatepingjia}">
+													<input type="hidden" th:value="${page1.evaluateId}" name="evaluateId"/>
+													<input type="hidden" th:value="${page1.userId}" name="userId"/>
+													<textarea cols="20px" rows="5px" name="review"></textarea>
+													<input type="submit" value="写追评"/>
+												</form>
+											</div>
+										</div>
+									</div>
+									<div style="float: right">
+										共 <b th:text="${pageInfo1.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=1,userId=${userId})}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo1.prePage},userId=${userId})}" th:if="${!pageInfo1.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+										当前第<span th:text="${pageInfo1.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo1.nextPage},userId=${userId})}" th:if="${!pageInfo1.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a th:href="@{/pingjia/comment(curPage=${pageInfo1.pages},userId=${userId})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--底部-->
+
+			</div>
+
+			<aside class="menu">
+				<ul>
+					<li class="person">
+						<a href="index.html">个人中心</a>
+					</li>
+					<li class="person">
+						<a href="#">个人资料</a>
+						<ul>
+							<li class="active"> <a href="information.html">个人信息</a></li>
+							<li> <a th:href="@{/pwd}">安全设置</a></li>
+							<li> <a th:href="@{/address/address(userAccount=${session.user.userAccount})}">收货地址</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a href="#">我的交易</a>
+						<ul>
+							<li><a th:href="@{/order/order}">订单管理</a></li>
+							<li> <a th:href="@{/returnGoods/returngoods}">退款售后</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a href="#">我的资产</a>
+						<ul>
+							<li> <a th:href="@{/volume/personselectvolume}">优惠券 </a></li>
+							<!--<li> <a href="bonus.html">红包</a></li>-->
+							<li> <a th:href="@{/bill/billlist}">账单明细</a></li>
+						</ul>
+					</li>
+
+					<li class="person">
+						<a href="#">我的小窝</a>
+						<ul>
+							<li> <a th:href="@{/collect/collectsearch(userId=${session.user.userId})}">收藏</a></li>
+							<li> <a th:href="@{/foot/getfoot(userId=${session.user.userId})}">足迹</a></li>
+							<li> <a th:href="@{/pingjia/comment(userId=${session.user.userId})}">评价</a></li>
+
+							<!--<li> <a href="news.html">消息</a></li>-->
+						</ul>
+					</li>
+
+				</ul>
+
+			</aside>
+		</div>
+
+	</body>
+
+</html>

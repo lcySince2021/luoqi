@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gem.luoqimalls.mapper.AddressMapper">
+    <insert id="insertIntoAddress" parameterType="Address">
+        insert into address(addressrName,addressTel,addressProvince,addressCity,addressDistrict,addressDetailed,userId,isDefault) VALUES (#{addressrName},#{addressTel},#{addressProvince},#{addressCity},#{addressDistrict},#{addressDetailed},#{userId},#{isDefault})
+    </insert>
+    <update id="updateAddressByAddressId" parameterType="Address">
+        update address set addressrName=#{addressrName},addressTel=#{addressTel},addressProvince=#{addressProvince},addressCity=#{addressCity},addressDistrict=#{addressDistrict},addressDetailed=#{addressDetailed} where addressId=#{addressId}
+    </update>
+    <delete id="deleteAddressByAddressId">
+        delete from address where addressId=#{param1}
+    </delete>
+    <select id="selectAllByUserId" resultType="com.gem.luoqimalls.pojo.Address">
+        select * from address where addressId=#{para1}
+    </select>
+</mapper>

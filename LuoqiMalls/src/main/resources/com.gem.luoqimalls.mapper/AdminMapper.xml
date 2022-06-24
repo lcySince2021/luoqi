@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gem.luoqimalls.mapper.AdminMapper">
+    <insert id="insertImage" parameterType="Image">
+        insert into image(goodsPicMaster,goodsPic1,goodsPic2,goodsPic3,goodsPic4) values (#{goodsPicMaster},#{goodsPic1},#{goodsPic2},#{goodsPic3},#{goodsPic4})
+    </insert>
+    <insert id="insertGoods">
+        insert into goods(goodsMark,goodsInt,goodsName,goodsPicId,goodsPrice,goodsDiscount,goodsSum,brandId,goodsCreateDate,goodsShelf,id_2,speId,goodsInteder,goodsDescribe,isMiaoSha,isYouHui,id_1)
+        values (#{goodsMark},#{goodsInt},#{goodsName},#{goodsPicId},#{goodsPrice},#{goodsDiscount},#{goodsSum},#{brandId},#{goodsCreateDate},#{goodsShelf},#{id_2},#{speId},#{goodsInteder},#{goodsDescribe},#{isMiaoSha},#{isYouHui},#{id_1})
+    </insert>
+    <insert id="insertAllVolume" parameterType="Volume">
+        insert into volume(volumeClass,hMoney,hMoneys,hNum,volumeDate,volumePicId) values (#{volumeClass},#{hMoney},#{hMoneys},#{hNum},#{volumeDate},#{volumePicId})
+    </insert>
+    <update id="updateHuoDong" parameterType="Goods">
+        update goods set goodsInteder=#{goodsInteder},isMiaoSha=#{isMiaoSha},isYouHui=#{isYouHui} where goodsId=#{goodsId}
+    </update>
+    <update id="updateIsShelf">
+        update goods set goodsShelf=#{param2} where goodsId=#{param1}
+    </update>
+    <update id="updateImage" parameterType="Volume">
+        update image set goodsPicMaster=#{goodsPicMaster},goodsPic1=#{goodsPic1},goodsPic2=#{goodsPic2},goodsPic3=#{goodsPic3},goodsPic4=#{goodsPic4} where goodsPicId=#{goodsPicId}
+    </update>
+    <update id="updateGoods">
+        update goods set goodsMark=#{goodsMark},goodsInt=#{goodsInt},goodsPrice=#{goodsPrice},goodsDiscount=#{goodsDiscount},goodsSum=#{goodsSum},goodsDescribe=#{goodsDescribe},goodsPrice=#{goodsPrice} where goodsId=#{goodsId}
+    </update>
+    <update id="updateUserVip">
+       update `user` set userVip=#{param2} where userId=#{param1}
+    </update>
+    <update id="updateImageById" parameterType="Image">
+      update image set goodsPicMaster=#{param2} where goodsPicId=#{param1}
+    </update>
+    <update id="updateVolume" parameterType="Volume">
+        update volume set volumeClass=#{volumeClass},hMoney=#{hMoney},hMoneys=#{hMoneys},hNum=#{hNum},volumeDate=#{volumeDate} where volumeId=#{volumeId}
+    </update>
+    <delete id="deleteVolumeById">
+        delete from volume where volumeId=#{param1}
+    </delete>
+    <select id="selectAllClassName1" resultType="com.gem.luoqimalls.pojo.GoodsClass1">
+        select * from goodsclass1
+    </select>
+    <select id="selectAllClassName2" resultType="com.gem.luoqimalls.pojo.GoodsClass2">
+        select * from goodsclass2
+    </select>
+
+    <select id="selectAllUserByUserId" resultType="com.gem.luoqimalls.pojo.User">
+        select userAccount,userPwd,userVip,userName,userSex,userEmall,userBir,userTel,userPws,userNick,userMoney,userinit from user where userId=#{param1}
+    </select>
+    <select id="selectGoodsPicIdBygoodsPicMaster" resultType="java.lang.Integer">
+         select goodsPicId from image where goodsPicMaster=#{param1}
+    </select>
+
+
+</mapper>

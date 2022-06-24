@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>订单管理</title>
+
+		<link th:href="@{/AmazeUI-2.4.2/assets/css/admin.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{/AmazeUI-2.4.2/assets/css/amazeui.css}" rel="stylesheet" type="text/css">
+
+		<link th:href="@{/css/personal.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{/css/orstyle.css}" rel="stylesheet" type="text/css">
+
+		<script th:src="@{/AmazeUI-2.4.2/assets/js/jquery.min.js}"></script>
+		<script th:src="@{/AmazeUI-2.4.2/assets/js/amazeui.js}"></script>
+
+	</head>
+
+	<body>
+	<!--顶部导航条 -->
+	<iframe th:src="@{/goods/heart}" width="1920px" height="45px"  style="border: none"></iframe>
+	<!--悬浮搜索框-->
+	<br/>
+	<div class="hmtop">
+		<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe><!--->
+
+
+		<div class="clear"></div>
+	</div>
+	<br>
+
+		<div style=" margin-left: 100px;width: 1800px; height: 30px; border: none;background-color:silver">  </div>
+
+		<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="user-order">
+
+						<!--标题 -->
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单管理</strong> / <small>Order</small></div>
+						</div>
+						<hr/>
+
+						<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
+
+							<div>
+								<table style="width: 850px;height: 42px;">
+									<td style="width: 170px;height: 40px;text-align:center"><a th:href="@{/returnGoods/returngoods}">申请退货</a></td>
+									<td style="width: 170px;height: 40px;text-align:center"><a th:href="@{/returnGoods/showwaitreturngoodslist}">退货待确认</a></td>
+									<td style="width: 170px;height: 40px;text-align:center;background-color: #f5f5f5"><a th:href="@{/returnGoods/showendreturngoods}">退货已完成</a></td>
+								</table>
+							</div>
+
+							<div class="am-tabs-bd">
+								<div class="order-top">
+									<div class="th th-item">
+										<td class="td-inner">商品</td>
+									</div>
+									<div class="th th-price">
+										<td class="td-inner">单价</td>
+									</div>
+									<div class="th th-number">
+										<td class="td-inner">数量</td>
+									</div>
+									<!--<div class="th th-operation">-->
+										<!--<td class="td-inner">商品操作</td>-->
+									<!--</div>-->
+									<div class="th th-amount">
+										<td class="td-inner">合计</td>
+									</div>
+									<div class="th th-status">
+										<td class="td-inner">交易状态</td>
+									</div>
+									<!--<div class="th th-change">-->
+										<!--<td class="td-inner">交易操作</td>-->
+									<!--</div>-->
+								</div>
+								<div   th:each="list:${list}">
+								<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+									<div class="order-main">
+
+										<div class="order-title">
+											<div class="dd-num">订单编号：<a href="javascript:;"><strong th:text="${list.orderId}"></strong></a></div>
+											<span>成交时间：</span>
+										</div>
+										<HR style="FILTER: alpha(opacity=0,finishopacity=100,style=1)"  color=#987cb9 SIZE=3>
+										<div class="order-list" th:each="orderDetails:${list.orderDetailsList}">
+											<div class="order-status1">
+
+
+												<div class="order-content">
+
+													<div>
+														<ul class="item-list">
+															<li class="td td-item">
+																<div class="item-pic">
+																	<a href="#" class="J_MakePoint">
+																		<img th:src="${orderDetails.goods.image.goodsPicMaster}" class="itempic J_ItemImg">
+																	</a>
+																</div>
+																<div class="item-info">
+																	<div class="item-basic-info">
+																		<a href="#">
+																			<p><strong th:text="${orderDetails.goods.goodsName}"></strong></p>
+																			<p class="info-little">颜色：
+
+																		</a>
+																	</div>
+																</div>
+															</li>
+															<li class="td td-price">
+																<div class="item-price">
+																	<strong th:text="${orderDetails.goods.goodsPrice}"></strong>
+																	<strong hidden th:text="${orderDetails.orderDetailsMoney}" class="OrderDetailsPrice"></strong>
+
+																</div>
+															</li>
+															<li class="td td-number">
+																<div class="item-number">
+																	<span>×</span><strong th:text="${orderDetails.orderGoodsNum}"></strong>
+																</div>
+															</li>
+															<li class="td td-operation">
+																<div class="item-operation">
+
+																</div>
+															</li>
+														</ul>
+													</div>
+
+												</div>
+												<div class="order-right">
+													<div th:if="${list.ordermark >0}"  >
+														<li class="td td-amount">
+															<div class="item-amount">
+																合计：<span th:text="${list.ordermark}"></span>积分
+															</div>
+														</li>
+													</div>
+													<div th:unless="${list.ordermark >0}"  >
+														<li class="td td-amount">
+															<div class="item-amount">
+																合计：￥<span th:text="${list.orderMoney}"></span>
+															</div>
+														</li>
+													</div>
+
+													<div class="move-right">
+														<li class="td td-status">
+															<div class="item-status">
+																<!--<p class="Mystatus"><strong th:text="${list.orderState}"></strong></p>-->
+																<p class="order-info"><strong th:text="${list.orderState}"></strong></p>
+
+															</div>
+														</li>
+														<!--<li class="td td-change">-->
+															<!--<div class="am-btn am-btn-danger anniu">-->
+															<!--<a th:href="@{/pay/pay(orderNum=${list.orderNum})}" style="color: white">-->
+
+																	<!--一键支付</a></div>-->
+														<!--</li>-->
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+								</div>
+							</div>
+
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+				<!--底部-->
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+
+							<a href="../home/home.html">商城首页</a>
+
+						</p>
+					</div>
+				</div>
+			</div>
+			<aside class="menu">
+				<ul>
+					<li class="person">
+						<a href="index.html">个人中心</a>
+					</li>
+					<li class="person">
+						<a href="#">个人资料</a>
+						<ul>
+							<li class="active"> <a href="information.html">个人信息</a></li>
+							<li> <a th:href="@{/pwd}">安全设置</a></li>
+							<li> <a th:href="@{/address/address(userAccount=${session.user.userAccount})}">收货地址</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a href="#">我的交易</a>
+						<ul>
+							<li><a th:href="@{/order/order}">订单管理</a></li>
+							<li> <a th:href="@{/returnGoods/returngoods}">退款售后</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a href="#">我的资产</a>
+						<ul>
+							<li> <a th:href="@{/volume/personselectvolume}">优惠券 </a></li>
+							<!--<li> <a href="bonus.html">红包</a></li>-->
+							<li> <a th:href="@{/bill/billlist}">账单明细</a></li>
+						</ul>
+					</li>
+
+					<li class="person">
+						<a href="#">我的小窝</a>
+						<ul>
+							<li> <a th:href="@{/collect/collectsearch(userId=${session.user.userId})}">收藏</a></li>
+							<li> <a th:href="@{/foot/getfoot(userId=${session.user.userId})}">足迹</a></li>
+							<li> <a th:href="@{/pingjia/comment(userId=${session.user.userId})}">评价</a></li>
+
+							<!--<li> <a href="news.html">消息</a></li>-->
+						</ul>
+					</li>
+
+				</ul>
+
+			</aside>
+		</div>
+
+	</body>
+<script>
+    var s = 0;
+    $(".OrderDetailsPrice").each(function(){
+        s+=parseInt($(this).text(), 10);
+    })
+    $(".zonghe").each(function(index, s) {
+        alert($(this).val());
+    });
+</script>
+
+</html>

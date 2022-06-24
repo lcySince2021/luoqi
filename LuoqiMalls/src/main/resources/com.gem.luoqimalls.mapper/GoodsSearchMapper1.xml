@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gem.luoqimalls.mapper.GoodsSearchMapper1">
+    <resultMap id="selectAllGoodsMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+       <association property="image" javaType="Image">
+           <result column="goodsPicMaster" property="goodsPicMaster"/>
+           <result column="goodsPic1" property="goodsPic1"/>
+           <result column="goodsPic2" property="goodsPic2"/>
+           <result column="goodsPic3" property="goodsPic3"/>
+           <result column="goodsPic4" property="goodsPic4"/>
+       </association>
+    </resultMap>
+    <select id="selectAllGoods" resultMap="selectAllGoodsMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+
+        </where>
+    </select>
+    <select id="countSelectAllGoods" resultType="java.lang.Integer" parameterType="GoodsSearch">
+        select count(*) from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+
+        </where>
+    </select>
+    <select id="selectId_2ByClassName2" resultType="java.lang.Integer">
+        select  id_2 from goodsclass2 where className2=#{param1}
+    </select>
+    <resultMap id="selectAllGoodsOrderByAllMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsOrderByAll" resultMap="selectAllGoodsOrderByAllMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC,goodsCreateDate DESC,gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsOrderByGoodsPriceMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsOrderByGoodsPrice" resultMap="selectAllGoodsOrderByGoodsPriceMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsOrderByGCommentCountMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsOrderByGCommentCount" resultMap="selectAllGoodsOrderByGCommentCountMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsOrderByGoodsCreateDateMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsOrderByGoodsCreateDate" resultMap="selectAllGoodsOrderByGoodsCreateDateMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.goodsName like concat('%',#{key},'%')
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsCreateDate DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1Map" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1" resultMap="selectAllGoodsById_1Map" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <select id="countselectAllGoodsById_1" resultType="java.lang.Integer">
+        select count(*) from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1OrderByAllMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1OrderByAll" resultMap="selectAllGoodsById_1OrderByAllMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC,goodsCreateDate DESC,gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1OrderByGoodsPriceMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1OrderByGoodsPrice" resultMap="selectAllGoodsById_1OrderByGoodsPriceMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1OrderByGCommentCountMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1OrderByGCommentCount" resultMap="selectAllGoodsById_1OrderByGCommentCountMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1OrderByGoodsCreateDateMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1OrderByGoodsCreateDate" resultMap="selectAllGoodsById_1OrderByGoodsCreateDateMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsCreateDate DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndId_2Map" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndId_2" resultMap="selectAllGoodsById_1AndId_2Map" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <select id="countselectAllGoodsById_1AndId_2" resultType="java.lang.Integer">
+        select count(*) from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndId_2OrderByAllMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndId_2OrderByAll" resultMap="selectAllGoodsById_1AndId_2OrderByAllMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC,goodsCreateDate DESC,gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndId_2OrderByGoodsPriceMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndId_2OrderByGoodsPrice" resultMap="selectAllGoodsById_1AndId_2OrderByGoodsPriceMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndId_2OrderByGCommentCountMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndId_2OrderByGCommentCount" resultMap="selectAllGoodsById_1AndId_2OrderByGCommentCountMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndId_2OrderByGoodsCreateDateMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndId_2OrderByGoodsCreateDate" resultMap="selectAllGoodsById_1AndId_2OrderByGoodsCreateDateMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.id_2=#{id_2}
+            <if test="brandId !=null">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsCreateDate DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndClassName2Map" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndClassName2" resultMap="selectAllGoodsById_1AndClassName2Map" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <select id="countselectAllGoodsById_1AndClassName2" resultType="java.lang.Integer">
+        select count(*) from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndClassName2OrderByAllMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndClassName2OrderByAll" resultMap="selectAllGoodsById_1AndClassName2OrderByAllMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC,goodsCreateDate DESC,gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndClassName2OrderByGoodsPriceMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndClassName2OrderByGoodsPrice" resultMap="selectAllGoodsById_1AndClassName2OrderByGoodsPriceMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsPrice ASC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndClassName2OrderByGCommentCountMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndClassName2OrderByGCommentCount"  resultMap="selectAllGoodsById_1AndClassName2OrderByGCommentCountMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY gCommentCount DESC
+        </where>
+    </select>
+    <resultMap id="selectAllGoodsById_1AndClassName2OrderByGoodsCreateDateMap" type="Goods">
+        <id column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsSales" property="goodsSales"/>
+        <association property="image" javaType="Image">
+            <result column="goodsPicMaster" property="goodsPicMaster"/>
+            <result column="goodsPic1" property="goodsPic1"/>
+            <result column="goodsPic2" property="goodsPic2"/>
+            <result column="goodsPic3" property="goodsPic3"/>
+            <result column="goodsPic4" property="goodsPic4"/>
+        </association>
+    </resultMap>
+    <select id="selectAllGoodsById_1AndClassName2OrderByGoodsCreateDate"
+            resultMap="selectAllGoodsById_1AndClassName2OrderByGoodsCreateDateMap" parameterType="GoodsSearch">
+        select g.goodsId,g.goodsName,g.goodsPrice,g.goodsSales,i.goodsPicMaster,i.goodsPic1,i.goodsPic2,i.goodsPic3,i.goodsPic4 from goods g,image i
+        <where>
+            g.goodsPicId=i.goodsPicId and g.goodsShelf=0 and g.id_1=#{id_1} and g.brandId=#{brandId}
+            <if test="id_2 !=null">
+                and g.id_2=#{id_2}
+            </if>
+            <if test="minPrice !=null">
+                and g.goodsPrice between #{minPrice} and #{maxPrice}
+            </if>
+            ORDER BY goodsCreateDate DESC
+        </where>
+    </select>
+
+</mapper>

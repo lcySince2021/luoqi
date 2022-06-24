@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>结算页面</title>
+
+	<link th:href="@{/css/amazeui.css}" rel="stylesheet" type="text/css" />
+
+	<link th:href="@{/css/demo.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/cartstyle.css}" rel="stylesheet" type="text/css" />
+
+	<link th:href="@{/css/jsstyle.css}" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript" th:src="@{/js/address.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+	<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{js/Calculation.js}"></script>
+
+</head>
+
+<body>
+<iframe th:src="@{/goods/heart}" width="1920px" height="36px"  style="border: none"></iframe>
+
+
+<!--顶部导航条 -->
+<!--<iframe src="heart.html" width="1349px" height="125px"></iframe>-->
+<div class="concent">
+	<!--地址 -->
+	<div class="paycont">
+		<div class="address">
+			<h3>确认收货地址 </h3>
+			<div class="control">
+
+				<div class="tc-btn createAddr theme-login am-btn am-btn-danger">
+					<a th:href="@{/address/address(userAccount=${session.user.userAccount})}">使用新地址</a>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<ul>
+				<div class="per-border"></div>
+				<li class="user-addresslist defaultAddr" th:each="address:${address}">
+
+					<div class="address-left">
+						<div class="user DefaultAddr">
+
+										<span class="buy-address-detail">   
+                   <span class="buy-user" th:text="${address.addressrName}"> </span>
+										<span class="buy-phone"  th:text="${address.addressTel}"></span>
+										</span>
+						</div>
+						<div class="default-address DefaultAddr">
+							<span class="buy-line-title buy-line-title-type">收货地址：</span>
+							<span class="buy--address-detail">
+								   <span class="province" th:text="${address.addressProvince}"></span>省
+										<span class="city" th:text="${address.addressCity}"></span>市
+										<span class="dist" th:text="${address.addressDistrict}"></span>区
+										<span class="street" th:text="${address.addressDetailed}"></span>
+										</span>
+
+							</span>
+						</div>
+						<ins class="deftip">默认地址</ins>
+					</div>
+					<div class="address-right">
+						<a href="../person/address.html">
+							<span class="am-icon-angle-right am-icon-lg"></span></a>
+					</div>
+					<div class="clear"></div>
+
+					<div class="new-addr-btn">
+
+						<a th:href="@{/address/updateAddress(addressId=${address.addressId})}"><i class="am-icon-edit"></i>编辑</a>
+
+						<span class="new-addr-bar">|</span>
+						<a th:href="@{/address/deleteAddress(addressId=${address.addressId},userId=${address.userId})}"><i class="am-icon-edit"></i>删除</a>
+					</div>
+
+				</li>
+				<div class="per-border"></div>
+				<li class="user-addresslist" th:each="addressList:${addressList}">
+					<div class="address-left">
+						<div class="user DefaultAddr">
+
+										<span class="buy-address-detail">   
+                   <span class="buy-user" th:text="${addressList.addressrName}"></span>
+										<span class="buy-phone" th:text="${addressList.addressTel}"></span>
+										</span>
+						</div>
+						<div class="default-address DefaultAddr">
+							<span class="buy-line-title buy-line-title-type">收货地址：</span>
+							<span class="buy--address-detail">
+								   <span class="province" th:text="${addressList.addressProvince}"></span>省
+										<span class="city" th:text="${addressList.addressCity}"></span>市
+										<span class="dist" th:text="${addressList.addressDistrict}"></span>区
+										<span class="street"  th:text="${addressList.addressDetailed}"></span>
+										</span>
+
+							</span>
+						</div>
+						<ins class="deftip hidden">默认地址</ins>
+					</div>
+					<div class="address-right">
+						<span class="am-icon-angle-right am-icon-lg"></span>
+					</div>
+					<div class="clear"></div>
+
+					<div class="new-addr-btn">
+						<input type="hidden" th:value="${addressList.addressrName}" class="addressrNames" name="addressrNames"/>
+						<input type="hidden" th:value="${addressList.addressProvince}" class="addressProvinces" name="addressProvinces"/>
+						<input type="hidden" th:value="${addressList.addressCity}" class="addressCitys" name="addressCitys"/>
+						<input type="hidden" th:value="${addressList.addressDistrict}" class="addressDistricts" name="addressDistricts"/>
+						<input type="hidden" th:value="${addressList.addressDetailed}" class="addressDetaileds" name="addressDetaileds"/>
+						<input type="hidden" th:value="${addressList.addressTel}" class="addressTels" name="addressTels"/>
+
+
+						<input type="hidden" th:value="${addressList.addressId}" class="addressIds" name="addressIds"/>
+						<input type="hidden" th:value="${session.user.userAccount}" class="userAccounts" name="userAccounts"/>
+
+						<i class="am-icon-check-circle" ></i><a  class="on"><i class="am-icon-edit"></i>设为地址</a>
+						<span class="new-addr-bar hidden">|</span>
+						<a th:href="@{/address/updateAddress(addressId=${addressList.addressId})}"><i class="am-icon-edit"></i>编辑</a>
+						<span class="new-addr-bar">|</span>
+						<a th:href="@{/address/deleteAddress(addressId=${addressList.addressId},userId=${addressList.userId})}"><i class="am-icon-edit"></i>删除</a>
+
+					</div>
+
+				</li>
+
+			</ul>
+
+			<div class="clear"></div>
+		</div>
+		<!--物流 -->
+		<!--<div class="logistics">-->
+		<!--<h3>选择物流方式</h3>-->
+		<!--<ul class="op_express_delivery_hot">-->
+		<!--<li data-value="yuantong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -468px"></i>圆通<span></span></li>-->
+		<!--<li data-value="shentong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -1008px"></i>申通<span></span></li>-->
+		<!--<li data-value="yunda" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -576px"></i>韵达<span></span></li>-->
+		<!--<li data-value="zhongtong" class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position:0px -324px"></i>中通<span></span></li>-->
+		<!--<li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position:0px -180px"></i>顺丰<span></span></li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<!--<div class="clear"></div>-->
+
+		<!--&lt;!&ndash;支付方式&ndash;&gt;-->
+		<!--<div class="logistics">-->
+		<!--<h3>选择支付方式</h3>-->
+		<!--<ul class="pay-list">-->
+		<!--<li class="pay card"><img src="../images/wangyin.jpg" />银联<span></span></li>-->
+		<!--<li class="pay qq"><img src="../images/weizhifu.jpg" />微信<span></span></li>-->
+		<!--<li class="pay taobao"><img src="../images/zhifubao.jpg" />支付宝<span></span></li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<div class="clear"></div>
+
+		<!--订单 -->
+		<div class="concent">
+			<div id="payTable">
+				<h3>确认订单信息</h3>
+				<div class="cart-table-th">
+					<div class="wp">
+
+						<div class="th th-item">
+							<div class="td-inner">商品信息</div>
+						</div>
+						<div class="th th-price">
+							<div class="td-inner">单价</div>
+						</div>
+						<div class="th th-amount">
+							<div class="td-inner">数量</div>
+						</div>
+						<div class="th th-sum">
+							<div class="td-inner">金额</div>
+						</div>
+						<!--<div class="th th-oplist">-->
+						<!--<div class="td-inner">配送方式</div>-->
+						<!--</div>-->
+
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<tr class="item-list">
+					<div class="bundle  bundle-last">
+
+						<div class="bundle-main">
+							<ul class="item-content clearfix" th:each="orders:${orderDetailsList}">
+								<div >
+									<div class="pay-phone" >
+										<li class="td td-item"  >
+											<input  type="hidden" class="orderendId" name="orderendId" th:value="${orders.orderId}"/>
+
+											<div class="item-pic">
+												<a href="#" class="J_MakePoint">
+													<img th:src="${orders.goods.image.goodsPicMaster}" width="80px" height="80px" class="itempic J_ItemImg"></a>
+											</div>
+											<div class="item-info" style="margin-top: 10px">
+												<div class="item-basic-info">
+													<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">
+														<a th:text="${orders.goods.goodsName}"></a>
+
+													</a>
+												</div>
+											</div>
+										</li>
+										<!--<li class="td td-info">-->
+										<!--<div class="item-props">-->
+										<!--<span class="sku-line">颜色：黑色</span>-->
+										<!--<span class="sku-line">包装：裸装</span>-->
+										<!--</div>-->
+										<!--</li>-->
+										<li class="td td-price">
+											<div class="item-price price-promo-promo">
+												<div class="price-content">
+													<em class="J_Price price-now">
+														<a th:text="${orders.goods.goodsLastPrice}"></a>
+													</em>
+												</div>
+											</div>
+										</li>
+									</div>
+									<li class="td td-amount">
+										<div class="amount-wrapper ">
+											<div class="item-amount ">
+												<span class="phone-title">购买数量</span>
+
+												<div class="sl">
+
+													<!--<input type="hidden" class="cartgoodsmoney" th:value="${orders.goods.goodsLastPrice}">-->
+													<!--<input  type="hidden" class="goodsId" name="goodsId" th:value="${orders.goods.goodsId}"/>-->
+
+													<input style="width: 60px;border: none" class="cartnum" id="cartnum" type="text" th:value="${orders.orderGoodsNum}" />
+
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="td td-sum">
+										<div class="td-inner">
+											<em tabindex="0" class="J_ItemSum number">
+												<input type="hidden" style="border: none;margin-left: 42px" class="cartallmoney" th:value="${orders.allGoodsLastPrice}"/>
+												<a name="sumofmoney" href="#"  th:text="${orders.allGoodsLastPrice}" hidefocus="true" class="cartallmoneychange"></a>
+
+											</em>
+										</div>
+									</li>
+									<!--<li class="td td-oplist">-->
+									<!--<div class="td-inner">-->
+									<!--<span class="phone-title">配送方式</span>-->
+									<!--<div class="pay-logis">-->
+									<!--快递<b class="sys_item_freprice">10</b>元-->
+									<!--</div>-->
+									<!--</div>-->
+									<!--</li>-->
+								</div>
+							</ul>
+							<div class="clear"></div>
+
+						</div>
+				</tr>
+				<div class="clear"></div>
+			</div>
+
+
+		</div>
+		<div class="clear"></div>
+		<div class="pay-total">
+			<!--留言-->
+			<div class="order-extra">
+				<div class="order-user-info">
+					<div id="holyshit257" class="memo">
+						<label>买家留言：</label>
+						<input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
+						<div class="msg hidden J-msg">
+							<p class="error">最多输入500个字符</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--优惠券 -->
+			<div class="buy-agio" >
+				<li class="td td-coupon" >
+
+					<span class="coupon-title">优惠券</span>
+					<select data-am-selected  id="AreaId" >
+						<div th:if="${volumes !=null}"  >
+						<option th:each="volumes:${volumes}" th:value="${volumes.volumeId}">
+
+							<div class="c-price">
+								<strong  th:text="${volumes.hMoney}" class="hmoney"></strong>
+							</div>
+							<!--<strong>￥</strong>-->
+							<!--<strong  th:text="${volumes.hMoney}" class="hmoney"></strong>-->
+							<!--</div>-->
+							<div class="c-limit">
+								<strong>￥【消费满</strong>
+								<strong th:text="${volumes.hMoneys}"></strong>
+								<strong>元可用】</strong>
+								<strong th:text="${volumes.volumeClass}"></strong>
+
+							</div>
+
+						</option>
+						</div>
+						<div th:unless="${volumes !=null}"  >
+							<option  th:value="空">
+							</option>
+
+						</div>
+					</select>
+
+
+				</li>
+
+
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!--含运费小计 -->
+		<div class="buy-point-discharge ">
+			<input   type="hidden" class="thisordersum" name="thisordersum" th:value="${sums.sum}"/>
+			<input   type="hidden" class="uservips" name="uservips" th:value="${session.user.userVip}"/>
+
+			<p class="price g_price ">
+				合计（含运费） <span>¥</span><em class="pay-sum">
+
+				<a th:text="${sums.sum}"></a>
+
+			</em>
+			</p>
+			<div th:if="${session.user.userVip == 1}"  >
+				<p class="price g_price ">
+					<a style="font-size:13px;">成为vip立享全场9折:</a><em class="pay-sum">
+					<a style="font-size:13px;color: red" th:href="@{/vip}" >点击立即成为vip</a>
+
+				</em>
+				</p>
+			</div>
+
+		</div>
+
+		<!--信息 -->
+		<div class="order-go clearfix">
+			<div class="pay-confirm clearfix">
+				<div class="box">
+					<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：
+					</em>
+						<span class="price g_price ">
+                                    <span>¥</span>
+
+												<em class="style-large-bold-red " id="J_ActualFee" th:text="${sums.sum}"></em>
+											</span>
+					</div>
+
+					<div id="holyshit268" class="pay-address">
+						<div th:if="${session.user.userVip == 0}"  >
+
+							<a  class="buy-phone" style="font-size:12px;color: red">已享会员价九折优惠</a>
+						</div>
+						<p class="buy-footer-address" th:each="address:${address}">
+							<span class="buy-line-title buy-line-title-type">寄送至：</span>
+							<span class="buy--address-detail">
+								   <span id="province" th:text="${address.addressProvince}"></span>省
+												<span id="city" th:text="${address.addressCity}"></span>市
+												<span id="dist" th:text="${address.addressDistrict}"></span>区
+												<span id="street" th:text="${address.addressDetailed}"></span>
+												</span>
+							</span>
+						</p>
+						<p class="buy-footer-address">
+							<span class="buy-line-title">收货人：</span>
+							<span class="buy-address-detail">
+                                         <span id="buy-user" th:text="${address.addressrName}"> </span>
+												<span id="buy-phone" th:text="${address.addressTel}"></span>
+												</span>
+						</p>
+					</div>
+				</div>
+
+				<div id="holyshit269" class="submitOrder">
+					<div class="go-btn-wrap">
+						<input   type="hidden" class="uservips" name="uservips" th:value="${session.user.userVip}"/>
+
+						<!--<input  type="button" id="J_Go"  class="btn-go" tabindex="0"  value="确认支付" />-->
+						<a id="J_Go"  class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+</div>
+</div>
+<div class="footer">
+	<div class="footer-hd">
+		<p>
+			<a href="#">恒望科技</a>
+			<b>|</b>
+			<a href="#">商城首页</a>
+			<b>|</b>
+			<a href="#">支付宝</a>
+			<b>|</b>
+			<a href="#">物流</a>
+		</p>
+	</div>
+	<div class="footer-bd">
+		<p>
+			<a href="#">关于恒望</a>
+			<a href="#">合作伙伴</a>
+			<a href="#">联系我们</a>
+			<a href="#">网站地图</a>
+			<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+		</p>
+	</div>
+</div>
+</div>
+<div class="theme-popover-mask"></div>
+<div class="theme-popover">
+
+	<!--标题 -->
+	<div class="am-cf am-padding">
+		<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>Add address</small></div>
+	</div>
+	<hr/>
+
+	<div class="am-u-md-12">
+		<form class="am-form am-form-horizontal">
+
+			<div class="am-form-group">
+				<label for="user-name" class="am-form-label">收货人</label>
+				<div class="am-form-content">
+					<input type="text" id="user-name" placeholder="收货人">
+				</div>
+			</div>
+
+			<div class="am-form-group">
+				<label for="user-phone" class="am-form-label">手机号码</label>
+				<div class="am-form-content">
+					<input id="user-phone" placeholder="手机号必填" type="email">
+				</div>
+			</div>
+
+			<div class="am-form-group">
+				<label for="user-phone" class="am-form-label">所在地</label>
+				<div class="am-form-content address">
+					<select data-am-selected>
+						<option value="a">浙江省</option>
+						<option value="b">湖北省</option>
+					</select>
+					<select data-am-selected>
+						<option value="a">温州市</option>
+						<option value="b">武汉市</option>
+					</select>
+					<select data-am-selected>
+						<option value="a">瑞安区</option>
+						<option value="b">洪山区</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="am-form-group">
+				<label for="user-intro" class="am-form-label">详细地址</label>
+				<div class="am-form-content">
+					<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+					<small>100字以内写出你的详细地址...</small>
+				</div>
+			</div>
+
+			<div class="am-form-group theme-poptit">
+				<div class="am-u-sm-9 am-u-sm-push-3">
+					<div class="am-btn am-btn-danger">保存</div>
+					<div class="am-btn am-btn-danger close">取消</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
+
+<div class="clear"></div>
+</body>
+<script>
+	function xx() {
+		ww();
+    }
+
+
+    $("#AreaId").change(function ww() {
+
+
+        var wwmoneys;
+        var index=document.getElementById("AreaId").selectedIndex;
+        document.getElementById("AreaId").options[index].value;
+
+        var obj=document.getElementById("AreaId");
+
+        for(i=0;i<obj.length;i++) {//下拉框的长度就是它的选项数.
+
+            if(obj[i].selected==true) {
+
+                var text1=obj[i].text;//获取当前选择项的值.
+//                    alert(text1)
+                var texts=obj[i].value;//获取当前选择项的值.
+//     alert(texts)
+
+                var index = text1.indexOf("￥");
+                var text=text1.substring(0, index);
+//         alert(text)
+                var thismoney=$(this).parent().parent().parent().next().find(".thisordersum");
+                var uservip=$(this).parent().parent().parent().next().find(".uservips");
+
+
+                if(uservip.val()==0){
+                    wwmoneys = (parseInt(thismoney.val())- parseInt(text))*0.9;
+                    $("#J_ActualFee").html((wwmoneys).toFixed(1));
+				}
+				else {
+                    wwmoneys = parseInt(thismoney.val())- parseInt(text);
+
+
+                    $("#J_ActualFee").html((wwmoneys).toFixed(1));
+				}
+
+            }
+
+
+
+        }
+    });
+
+    //    btn-go
+    $(".btn-go").click(
+        function () {
+            var arrId = new Array();
+            var arrnum = new Array();
+//            var endssum= $("#J_ActualFee")
+
+            var index=document.getElementById("AreaId").selectedIndex;//获取当前选择项的索引.
+            document.getElementById("AreaId").options[index].value;//获取当前选择项的值.
+            var obj=document.getElementById("AreaId");
+
+            for(i=0;i<obj.length;i++) {//下拉框的长度就是它的选项数.
+
+                if(obj[i].selected==true) {
+
+
+                    var text1=obj[i].text;//获取当前选择项的值.
+//                    alert(text1)
+                    var texts=obj[i].value;//获取当前选择项的值.
+//     alert(texts)
+                    var index = text1.indexOf("￥");
+                    var text=text1.substring(0, index);
+//         alert(text)
+                    var thismoney=$(this).parent().parent().parent().parent().prev().find(".thisordersum");
+                    var uservip=$(this).parent().find(".uservips");
+
+
+                    if(uservip.val()==0){
+                        endmoneys = (parseInt(thismoney.val())- parseInt(text))*0.9;
+
+                    }
+                    else {
+                        endmoneys = parseInt(thismoney.val())- parseInt(text);
+
+                    }
+
+
+
+                }     }
+
+            var orderendId=$(this).parents().find(".orderendId").val();
+//              alert(orderendId)
+//            orderendId
+            $.ajax({
+                //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                type: "POST",
+                //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                url: "/Luoqi/pay/paymoney?volumeId="+texts+"&orderId="+orderendId,
+                success: function (maps) {
+                    var ww=maps.orderIds;
+
+                    window.location.href="/Luoqi/order/pay?orderId="+ww+"&endmoneys="+endmoneys;
+
+
+
+                },
+                error: function () {
+                    layer.closeAll();
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+//
+//    addressUpdateajax
+
+    $(".on").click(function () {
+
+        var userAccount = $(this).parents().find(".userAccounts").val();
+            var addressId = $(this).parents().find(".addressIds").val();
+            var addressName = $(this).parents().find(".addressrNames").val();
+            var addressProvince = $(this).parents().find(".addressProvinces").val();
+            var addressCity = $(this).parents().find(".addressCitys").val();
+            var addressDistrict = $(this).parents().find(".addressDistricts").val();
+            var addressDetailed= $(this).parents().find(".addressDetaileds").val();
+            var addressTel = $(this).parents().find(".addressTels").val();
+
+            $("#province").html(addressProvince);
+            $("#city").html(addressCity);
+            $("#dist").html(addressDistrict);
+            $("#street").html(addressDetailed);
+            $("#buy-user").html(addressName);
+            $("#buy-phone").html(addressTel);
+
+       $.ajax({
+            //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+            type: "POST",
+            //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+            url: "/Luoqi/address/addressUpdateajax?addressId=" + addressId + "&userAccount=" + userAccount,
+
+            success: function (maps) {
+
+
+            },
+            error: function () {
+                alert(121)
+                layer.closeAll();
+            }
+        });
+
+
+        });
+
+
+
+
+
+
+
+
+</script>
+</html>

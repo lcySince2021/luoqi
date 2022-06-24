@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+	<title>我的优惠券</title>
+	<link th:href="@{/css/admin.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/amazeui.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/personal.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/colstyle.css}" rel="stylesheet" type="text/css">
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<style>
+		.lijishiyong{
+			/*border: 1px solid red;*/
+			margin-top: 268px;
+			margin-left: 45px;
+			position: absolute;
+			height: 36px;
+			width: 129px;
+		}
+		.lijishiyongwenzi{
+			margin-left: 33px;
+			margin-top: 6px;
+			position: absolute;
+		}
+	</style>
+
+</head>
+
+<body>
+<iframe th:src="@{/goods/heart}" width="1920px" height="45px"  style="border: none"></iframe>
+<!--悬浮搜索框-->
+<br/>
+<div class="hmtop">
+	<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe><!--->
+
+
+	<div class="clear"></div>
+</div>
+<header>
+	<article>
+		<div class="mt-logo">
+			<!--顶部导航条 -->
+
+
+			<div class="clear"></div>
+		</div>
+		</div>
+	</article>
+</header>
+
+<div style=" margin-left: 100px;width: 1800px; height: 30px; border: none;background-color:silver">  </div>
+
+<b class="line"></b>
+<div class="center">
+	<div class="col-main">
+		<div class="main-wrap">
+
+			<div class="user-collection">
+				<!--标题 -->
+				<div class="am-cf am-padding">
+					<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">我的优惠券</strong> / <small>My&nbsp;Collection</small></div>
+				</div>
+				<hr/>
+
+				<div class="you-like">
+					<div class="s-bar">
+						我的优惠券
+					</div><table>
+
+					<div>
+						<div th:each="myVolumeList:${myVolumeList}" style="margin-left: 20px;height: 309px;width: 226px;float: left;">
+						<div style="float: left;border: 1px solid red" th:each="volumeList:${myVolumeList.volumeList}">
+							<img th:src="@{/volume/images/myvolume.png}" style="position: absolute">
+							<p style="margin-top: 30px;margin-left: 43px;position: absolute;color: white;font-size: 30px">￥<a style="color: white;font-size: 40px" th:text="${volumeList.hMoney}"></a></p>
+							<p style="margin-top: 110px;margin-left: 55px;position: absolute;color: white;font-size: 20px">满<a style="color: white;font-size: 25px" th:text="${volumeList.hMoneys}"></a>可用</p>
+							<p style="margin-top: 180px;margin-left: 20px;position: absolute;color: black;font-size: 15px">限品类:<a style="color: black;font-size: 15px" th:text="${volumeList.volumeClass}"></a>(特殊商品除外)</p>
+							<p style="margin-top: 220px;margin-left: 60px;position: absolute;color: black;font-size: 15px">限平台:全平台</p>
+							<a class="lijishiyong" th:href="@{/goods/search6(key=${''})}">
+								<img th:src="@{/volume/images/123.png}" style="margin-left: -2px;margin-top: -4px;position: absolute;height: 42px;width: 135px">
+								<p class="lijishiyongwenzi">立即使用</p>
+							</a>
+						</div>
+							</div>
+						</div>
+				</table>
+					<!--<i class="am-icon-refresh am-icon-fw"></i>更多-->
+				</div>
+			</div>
+		</div>
+		<!--底部-->
+		<div class="footer">
+			<div class="footer-hd">
+				<p>
+
+					<a href="../home/home.html">商城首页</a>
+
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<aside class="menu">
+		<ul>
+			<li class="person">
+				<a href="index.html">个人中心</a>
+			</li>
+			<li class="person">
+				<a href="#">个人资料</a>
+				<ul>
+					<li class="active"> <a href="information.html">个人信息</a></li>
+					<li> <a th:href="@{/pwd}">安全设置</a></li>
+					<li> <a th:href="@{/address/address(userAccount=${session.user.userAccount})}">收货地址</a></li>
+				</ul>
+			</li>
+			<li class="person">
+				<a href="#">我的交易</a>
+				<ul>
+					<li><a th:href="@{/order/order}">订单管理</a></li>
+					<li> <a th:href="@{/returnGoods/returngoods}">退款售后</a></li>
+				</ul>
+			</li>
+			<li class="person">
+				<a href="#">我的资产</a>
+				<ul>
+					<li> <a th:href="@{/volume/personselectvolume}">优惠券 </a></li>
+					<!--<li> <a href="bonus.html">红包</a></li>-->
+					<li> <a th:href="@{/bill/billlist}">账单明细</a></li>
+				</ul>
+			</li>
+
+			<li class="person">
+				<a href="#">我的小窝</a>
+				<ul>
+					<li> <a th:href="@{/collect/collectsearch(userId=${session.user.userId})}">收藏</a></li>
+					<li> <a th:href="@{/foot/getfoot(userId=${session.user.userId})}">足迹</a></li>
+					<li> <a th:href="@{/pingjia/comment(userId=${session.user.userId})}">评价</a></li>
+
+					<!--<li> <a href="news.html">消息</a></li>-->
+				</ul>
+			</li>
+
+		</ul>
+
+	</aside>
+</div>
+
+</body>
+
+
+</html>

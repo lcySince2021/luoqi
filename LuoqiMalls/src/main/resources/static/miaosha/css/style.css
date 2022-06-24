@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.big{
+	height: 7100px;
+}
+.kuangjia{
+	margin: 0 auto;
+	width: 1275px;
+	height: 900px;
+	/*border: 1px solid black;*/
+}
+
+.topshijian{
+	margin: 0 auto;
+	width: 1890px;
+	height: 60px;
+	top: 1px;
+	/*border: 1px solid gainsboro;*/
+}
+.diyige{
+	background-color: red;
+	font-size: 25px;
+	color: white;
+
+}
+
+.top{
+	margin: 0 auto;
+	width: 1499px;
+	height: 90px;
+	margin-top: 10px;
+}
+.top2{
+	margin: 0 auto;
+	width: 1210px;
+	height: 400px;
+	margin-top: 10px;
+}
+.shangpin{
+	float: left;
+	margin-left: 15px;
+	margin-top: 15px;
+	width: 300px;
+	height: 386px;
+	/*border: 1px solid blue;*/
+}
+.tupian{
+	margin-top: 10px ;
+	margin-left: 10px;
+	width: 285px;
+	height: 280px;
+	/*border: 1px solid black;*/
+}
+.wenzi{
+	margin-left: 10px;
+	width: 285px;
+	height: 40px;
+	/*border: 1px solid black;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	course:hand;
+}
+.jiage{
+	margin-left: 10px;
+	width: 285px;
+	height: 50px;
+	border: 1px solid red;
+}
+.lijiqianggou{
+	text-align: center;
+	float: right;
+	width: 80px;
+	height: 50px;
+	background-color: red;
+}
+.money{
+	width: 205px;
+	height: 50px;
+	float: left;
+}
+.lijiqianggou1{
+	margin-top: 10px;
+	text-align: center;
+	color: white;
+	font-size: 15px;
+}
+.fenye{
+	margin: 0 auto;
+	width: 1000px;
+	height: 60px;
+	float: right;
+	/*border: 1px solid red;*/
+}
+.zuoce{
+	top: 1px;
+}
+.content{
+	/*border: 1px solid red;*/
+	top: 1px;
+}

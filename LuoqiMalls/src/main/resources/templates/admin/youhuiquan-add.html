@@ -1,0 +1,159 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="Bookmark" th:href="@{/favicon.ico}" >
+	<link rel="Shortcut Icon" th:href="@{/favicon.ico}" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" th:src="@{lib/html5shiv.js}"></script>
+	<script type="text/javascript" th:src="@{lib/respond.min.js}"></script>
+
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui/css/H-ui.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/H-ui.admin.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/skin/default/skin.css}" id="skin" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style.css}" />
+	<!--[if IE 6]>
+	<script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--/meta 作为公共模版分离出去-->
+
+	<link th:href="@{lib/webuploader/0.1.5/webuploader.css}" rel="stylesheet" type="text/css" />
+
+	<style>
+		.c1{
+			width: 70px;
+			height: 30px;
+			margin-bottom: 30px;
+			margin-top: 30px;
+		}
+		.c2{
+			margin-left: 600px;
+		}
+	</style>
+</head>
+<body>
+<div class="page-container">
+	<form th:action="@{/admin/addvol}" method="post" class="form form-horizontal" id="form-article-add">
+		<input type="hidden" name="curPage" th:value="${curPage}"/>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">优惠卷类别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="volumeClass">
+					<option>请选择</option>
+					<option th:each="volumeClass:${volumeClass}" th:value="${volumeClass}" th:text="${volumeClass}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">优惠额度：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="hMoney">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">优惠额度所需金额：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="hMoneys">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">优惠券数量：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" name="hNum">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">截止日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="date" class="input-text" name="volumeDate">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">优惠卷图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<p><img src="" width="100px" height="80px" id="img4"/>
+
+					<input type="file" name="youhuifile" id="youhuifile"/>
+			</div>
+		</div>
+		<input type="hidden" th:value="${upToken}"  class="upToken"/>
+		<input class="c1 c2" type="submit" value="增加"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="c1" type="reset" value="取消"/>
+	</form>
+</div>
+
+                <!--_footer 作为公共模版分离出去-->
+                <script type="text/javascript" th:src="@{lib/jquery/1.9.1/jquery.min.js}"></script>
+				<script type="text/javascript" th:src="@{lib/layer/2.4/layer.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui/js/H-ui.min.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui.admin/js/H-ui.admin.js}"></script> <!--/_footer 作为公共模版分离出去-->
+
+
+</body>
+<script type="text/javascript" src="https://unpkg.com/qiniu-js@2.5.3/dist/qiniu.min.js"></script>
+<script>
+    $('#youhuifile').on('change',function (e) {
+        var token=$(this).closest("form").find(".upToken").val();
+        fileid=$(this).attr('id')
+        console.log(fileid)
+        file = e.target.files[0]
+        var key;
+        console.log(file)
+        var config = {
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            params: {'index':$(this).attr('id')},
+            mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+        };
+        var observer = {
+            next(res){
+                // ...
+            },
+            error(err){
+                console.log(err)
+            },
+            complete(res) {
+                console.log(res)
+                key = res['key']
+                console.log(key)
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/admin/youhuifile?key="+key,
+                    success: function (maps) {
+                        var ww=maps.imgid;
+                        $('#picid').value(ww);
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+//        $("#filearray").val(JSON.stringify(filearray));
+
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        var subscription = observable.subscribe(observer);
+    });
+
+
+</script>
+
+
+
+
+
+
+
+</html>

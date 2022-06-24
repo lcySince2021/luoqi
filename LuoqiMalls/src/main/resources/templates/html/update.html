@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+</head>
+<body>
+<div th:replace="/html/hello :: html"></div>
+ <form th:action="@{/user/update}" method="post" enctype="multipart/form-data">
+     <input type="hidden" th:value="${goods.id}" name="id">
+     <input type="hidden" th:value="${goods.pic}" name="pic">
+     <p>商品号:<span th:text="${goods.id}"></span></p>
+     <p>商品名:<span th:text="${goods.name}"></span></p>
+     <p>
+         <img th:src="@{/}+${goods.pic}" width="100px" height="100px">
+         <input type="file" name="file"/>
+     </p>
+     <p>商品价格: <input type="text" name="price" th:value="${goods.price}"/> </p>
+     <p>商品上架时间: <input type="text" name="createtime"
+                       th:value="${#dates.format(goods.createtime,'yyyy-MM-dd')}"/> </p>
+     <p>类别:<span th:text="${goods.catory.cname}"></span></p>
+     <a th:href="@{/user/main}">返回</a>
+     <p><input type="submit" value="修改"/></p>
+
+ </form>
+
+</body>
+</html>

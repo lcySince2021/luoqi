@@ -1,0 +1,143 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+	<script type="text/javascript" th:src="@{/lib/html5shiv.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/respond.min.js}"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui/css/H-ui.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/H-ui.admin.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/skin/default/skin.css}" id="skin" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style.css}" />
+<!--[if IE 6]>
+	<script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+<title>用户管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"><span class="r">共有数据：<strong th:text="${userPageInfo.total}"></strong> 条</span> </div>
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>
+			<tr class="text-c">
+				<th width="100">用户账号</th>
+				<th width="65">登录密码</th>
+				<th width="100">真实姓名</th>
+				<th width="100">昵称</th>
+				<th width="30">性别</th>
+				<th width="120">手机号码</th>
+				<th width="120">邮箱地址</th>
+				<th width="90">积分</th>
+				<th width="90">账户余额</th>
+				<th width="70">是否禁言</th>
+				<th width="70">是否会员</th>
+				<th width="40">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c" th:each="user:${userPageInfo.list}">
+				<td><a th:href="@{/admin/chazhao(userId=${user.userId})}" th:text="${user.userAccount}"></a></td>
+				<td th:text="${user.userPwd}"></td>
+				<td th:text="${user.userName}"></td>
+				<td th:text="${user.userNick}"></td>
+				<td th:text="${user.userSex}"></td>
+				<td th:text="${user.userTel}"></td>
+				<td th:text="${user.userEmall}"></td>
+				<td th:text="${user.userinit}"></td>
+				<td th:text="${user.userMoney}"></td>
+				<form th:action="@{/admin/jinyan}" method="post">
+					<input type="hidden" th:value="${user.userId}" name="userId"/>
+					<input type="hidden" th:value="${curPage}" name="curPage"/>
+				<td class="text-l">
+					<select class="text-l" data-am-selected name="isJY">
+						<option value="0"th:selected="${user.isJY==0}">禁言</option>
+						<option value="1" th:selected="${user.isJY==1}">未禁言</option>
+					</select>
+				</td>
+				<td class="td-status" th:if="${user.userVip==0}"><span class="label label-success radius">会员用户</span></td>
+				<td class="td-status" th:unless="${user.userVip==0}"><span class="label label-defaunt radius">普通用户</span></td>
+				<td class="td-manage" th:if="${user.userVip==0}" th:value="${user.userId}" th:name="${curPage}"><a style="text-decoration:none" onClick="member_stop(this,'10001')" href="javascript:;" title="会员用户"><i class="Hui-iconfont">&#xe631;</i></a><input type="submit" value="确定"/> </td>
+				<td class="td-manage" th:unless="${user.userVip==0}" th:value="${user.userId}" th:name="${curPage}"><a style="text-decoration:none" onClick="member_start(this,'10001')" href="javascript:;" title="会员用户"><i class="Hui-iconfont">&#xe631;</i></a> <input type="submit" value="确定"/></td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+<div style="float: right">
+	共 <b th:text="${userPageInfo.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/member-list?curPage=1}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/member-list(curPage=${userPageInfo.prePage})}" th:if="${!userPageInfo.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	当前第<span th:text="${userPageInfo.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/member-list(curPage=${userPageInfo.nextPage})}" th:if="${!userPageInfo.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/member-list(curPage=${userPageInfo.pages})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" th:src="@{lib/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{lib/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{static/h-ui/js/H-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{static/h-ui.admin/js/H-ui.admin.js}"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" th:src="@{lib/My97DatePicker/4.8/WdatePicker.js}"></script>
+<!--<script type="text/javascript" th:src="@{lib/datatables/1.10.0/jquery.dataTables.min.js}"></script>-->
+<script type="text/javascript" th:src="@{lib/laypage/1.2/laypage.js}"></script>
+<script type="text/javascript">
+$(function(){
+	$('.table-sort').dataTable({
+		"aaSorting": [ 1, "desc" ],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+		]
+	});
+
+});
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-停用*/
+function member_stop(obj,id){
+	layer.confirm('确认是普通用户吗？',function(index){
+        var useId=$(obj).parents("tr").find(".td-manage").attr("value");
+        var page=$(obj).parents("tr").find(".td-manage").attr("name");
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="普通用户"><i class="Hui-iconfont">&#xe6e1;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">普通用户</span>');
+				$(obj).remove();
+        location.href="/Luoqi/admin/userVipUpdate?userVip=1&useId="+useId+"&curPage="+page;
+        layer.msg('普通用户!',{icon: 5,time:1000});
+	});
+}
+
+/*用户-启用*/
+function member_start(obj,id){
+	layer.confirm('确认是会员用户吗吗？',function(index){
+	             var useId=$(obj).parents("tr").find(".td-manage").attr("value");
+                var page=$(obj).parents("tr").find(".td-manage").attr("name");
+                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="会员用户"><i class="Hui-iconfont">&#xe631;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">会员用户</span>');
+				$(obj).remove();
+        location.href="/Luoqi/admin/userVipUpdate?userVip=0&useId="+useId+"&curPage="+page;
+        layer.msg('会员用户!',{icon: 6,time:1000});
+		});
+	};
+
+</script> 
+</body>
+</html>

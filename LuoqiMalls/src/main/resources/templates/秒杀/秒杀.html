@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:images="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>罗琦秒杀</title>
+<style>
+.diyige{
+    text-align: center;
+}
+    #dingshiqi{
+        font-size:25px;
+        color: white;
+        /*margin-left:900px*/
+    }
+    .del{
+        font-size: 17px;
+    }
+    .goodsname{
+        font-size: 18px;
+    }
+    .biaoti{
+        font-size: 30px;
+        font-weight: bold;
+    }
+</style>
+    <script th:src="@{/miaosha/js/jquery.js}"></script>
+    <!--<link href="css/basic.css" rel="stylesheet" type="text/css">-->
+    <link th:href="@{/miaosha/css/style.css}" rel="stylesheet" type="text/css">
+    <!--<script src="js/jquery.min.js"></script>-->
+    <link th:href="@{/miaosha/css/jquery-accordion-menu.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/miaosha/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/miaosha/js/index.js}"></script>
+    <script th:src="@{/miaosha/js/jquery-1.11.2.min.js}" type="text/javascript"></script>
+    <script th:src="@{/miaosha/js/jquery-accordion-menu.js}" type="text/javascript"></script>
+    <SCRIPT language=javascript>
+        //倒计时
+        function show_time(){
+            window.setTimeout("show_time()", 1000);
+            BirthDay=new Date("2018/11/19 19:57:00");//改成你的计时日期
+            today=new Date();
+            timeold=(BirthDay.getTime()-today.getTime());
+            sectimeold=timeold/1000;
+            secondsold=Math.floor(sectimeold);
+            msPerDay=24*60*60*1000;
+            e_daysold=timeold/msPerDay;
+            daysold=Math.floor(e_daysold);
+            e_hrsold=(e_daysold-daysold)*24;
+            hrsold=Math.floor(e_hrsold);
+            e_minsold=(e_hrsold-hrsold)*60;
+            minsold=Math.floor((e_hrsold-hrsold)*60);
+            seconds=Math.floor((e_minsold-minsold)*60);
+            if (timeold <= 0){
+                $(".shangpin").unbind("click").click(function () {
+                    alert("该活动已结束")
+//                    window.location.href="javascript:void(0)"
+                    return false;
+                })
+                dingshiqi.innerHTML=0+"小时"+0+"分"+0+"秒";
+            }else {
+                dingshiqi.innerHTML=hrsold+"小时"+minsold+"分"+seconds+"秒";
+            }
+        }
+        show_time();
+    </SCRIPT>
+</head>
+<body>
+
+<div class="hmtop">
+    <!--顶部导航条 -->
+    <!--<iframe th:src="@{/home/heart.html}" width="1920px" height="36px"  style="border: none"></iframe>-->
+    <div th:replace="/home/heart :: html"></div>
+    <!--悬浮搜索框-->
+    <div class="nav white">
+        <!--<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe>&lt;!&ndash;->-->
+        <div th:replace="/home/heart1 :: html"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="big">
+<div class="topshijian" style="height: 75px">
+    <table class="topshijian">
+        <th class="diyige"><span id="dingshiqi"></span><br>
+            <b style="font-size:25px;color: white">结束秒杀</b></th>
+    </table>
+</div>
+
+<div class="top">
+    <img th:src="@{/miaosha/images/TOP.png}" height="90px" width="1499px">
+</div>
+    <div class="content">
+        <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+            <!--<div class="jquery-accordion-menu-header" id="form"></div>-->
+            <ul id="demo-list">
+                <li><a class="hover" href="#nanzhuang" style="font-size: 18px">男装</a></li>
+                <li><a href="#nvzhuang" style="font-size: 18px">女装</a></li>
+                <li><a href="#xie" style="font-size: 18px">鞋</a></li>
+                <li><a href="#tongzhuang" style="font-size: 18px">童装</a></li>
+                <li><a href="#xiangbao" style="font-size: 18px">箱包</a></li>
+                <li><a href="#neiyi" style="font-size: 18px">睡衣</a></li>
+                <li><a href="#peishi" style="font-size: 18px">配饰</a></li>
+            </ul>
+        </div>
+    </div>
+<div class="top2">
+    <img th:src="@{/miaosha/images/TOP22.png}" height="350px" width="700px">
+    <img th:src="@{/miaosha/images/TOP221.png}" height="350px" width="250px">
+    <img th:src="@{/miaosha/images/TOP222.png}" height="350px" width="250px">
+</div>
+<div class="kuangjia">
+    <div  id="nanzhuang">
+        <p class="biaoti">男装</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <!--<ul th:each="goods:${goods}">-->
+        <div class="shangpin" th:each="nanzhuang:${nanzhuang}">
+            <a th:href="@{/goods/good(goodsId=${nanzhuang.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${nanzhuang.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${nanzhuang.goodsName}" class="goodsname"></p>
+            </div>
+            </a>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${nanzhuang.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${nanzhuang.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${nanzhuang.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="nvzhuang">
+        <p class="biaoti">女装</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="nvzhuang:${nvzhuang}">
+            <a th:href="@{/goods/good(goodsId=${nvzhuang.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${nvzhuang.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${nvzhuang.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${nvzhuang.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${nvzhuang.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${nvzhuang.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="xie">
+        <p class="biaoti">鞋</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="xie:${xie}">
+            <a th:href="@{/goods/good(goodsId=${xie.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${xie.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${xie.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${xie.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${xie.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${xie.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="tongzhuang">
+        <p class="biaoti">童装</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="tongzhuang:${tongzhuang}">
+            <a th:href="@{/goods/good(goodsId=${tongzhuang.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${tongzhuang.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${tongzhuang.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${tongzhuang.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${tongzhuang.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${tongzhuang.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="xiangbao">
+        <p class="biaoti">箱包</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="xiangbao:${xiangbao}">
+            <a th:href="@{/goods/good(goodsId=${xiangbao.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${xiangbao.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${xiangbao.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${xiangbao.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${xiangbao.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${xiangbao.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="neiyi">
+        <p class="biaoti">睡衣</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="shuiyi:${shuiyi}">
+            <a th:href="@{/goods/good(goodsId=${shuiyi.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${shuiyi.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${shuiyi.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${shuiyi.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${shuiyi.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${shuiyi.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+<div class="kuangjia">
+    <div  id="peishi">
+        <p class="biaoti">配饰</p>
+        <!-- 正在秒杀的此处图片最好采用白底，好看-->
+        <div class="shangpin" th:each="peishi:${peishi}">
+            <a th:href="@{/goods/good(goodsId=${peishi.goodsId})}">
+            <div class="tupian">
+                <!--此处为数据库图片-->
+                <img th:src="${peishi.image.goodsPicMaster}" width="285px" height="280">
+            </div>
+            <div class="wenzi">
+                <p th:text="${peishi.goodsName}" class="goodsname"></p>
+            </div>
+            <div class="jiage">
+                <!--此处为数据库价格-->
+                <div class="money" style="width: 200px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: red;font-size: 20px">￥</a>
+                    <a th:text="${peishi.goodsLastPrice}" style="font-size: 20px;color: red"></a>
+                    <a>￥</a>
+                    <del th:text="${peishi.goodsPrice}" class="del"></del>
+                </div>
+                <div class="lijiqianggou" style="width: 78px"><a th:href="@{/goods/good(goodsId=${peishi.goodsId})}"><p class="lijiqianggou1">立即抢购</p></a></div>
+            </div></a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<iframe th:src="@{/foot/bottom}"  width="1920px;" height="656px;"  style="border: none"></iframe>
+<script type="text/javascript">
+    jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+</script>
+</body>
+</html>

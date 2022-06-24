@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>积分兑换</title>
+    <link rel="stylesheet" th:href="@{malls/jifen/layui/css/layui.css}">
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery-1.4.3.min.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.cookie.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.json-2.2.min.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/common.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/position.js?resVer=20181018173157"></script>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/normalize.css?resVer=20181018173157"/>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/tipsLayer.css?resVer=20181018173157"/>
+    <link rel="stylesheet" href="https://res.mall.10010.cn/jf-mall/res/web/css/Popupwindow.css?resVer=20181018173157"/>
+    <script>
+
+        if (!this.Esf) {
+            this.Esf = {};
+            Esf.contextPath = "http://jf.10010.com";
+            Esf.resPath = "https://res.mall.10010.cn/jf-mall/res";
+            Esf.webLoginUrl = "https://uac.10010.com";
+            Esf.webDetail="http://jf.10010.com/item/{0}.html";
+        }
+
+        document.domain = "10010.com";
+    </script>
+
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/homePageNew.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/banner.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <link href="https://res.mall.10010.cn/jf-mall/res/web/css/style.css?resVer=20181018173157" rel="stylesheet" type="text/css" />
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/jquery.SuperSlide.2.1.1.js?resVer=20181018173157"></script>
+    <script charset="utf-8" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/homePage.js?resVer=20181018173157"></script>
+    <script language="javascript" type="text/javascript" src="https://res.mall.10010.cn/jf-mall/res/web/js/position.js?resVer=20181018173157"></script>
+
+    <script>
+        Esf.flowpkgHN = "http://jf.10010.com/item/111588880002.html";
+        Esf.flowpkgOther = "http://jf.10010.com/item/111588880001.html";
+    </script>
+    <script language='javascript' type='text/javascript' src='https://m.jf.10010.com/cms/nps/lib/ma.js' charset='utf-8'></script></head>
+
+    <style>
+        .d1{
+            margin-left: 90px;
+        }
+        .d2{
+            padding-left: 600px;
+        }
+        .d3{
+            padding-left: 60px;
+        }
+        .d4{
+            margin-top: 30px;
+        }
+        .d5{
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div th:replace="/home/heart :: html" width="1920px" height="36px" style="border: none" ></div>
+<!-- 你的HTML代码 -->
+
+<script th:src="@{/malls/jifen/layui/layui.js}"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+
+<div class="layui-fluid">
+    <ul class="layui-nav" lay-filter="jifenxiangqing">
+        <li class="layui-nav-item1 d3">我的积分商城</li>
+        <li class="layui-nav-item d1"><a th:href="@{/jifen3}">积分详情</a></li>
+        <li class="layui-nav-item layui-this"><a th:href="@{/maskgoods/integersearch}">积分兑换</a></li>
+        <li class="layui-nav-item"><a th:href="@{/maskgoods/markhavebuy}">积分明细</a></li>
+        <li class="layui-nav-item1 a3">我的总积分：
+            <a th:text="${session.user.userinit}"></a>
+            <!--<span th:text="${session.user.userinit}"></span>-->
+        </li>
+    </ul>
+    <div class="layui-container d4">
+        <div class="layui-row">
+            <ul class="d3 d5">
+                <font size="5">我的总积分：    <a th:text="${session.user.userinit}"></a></font>
+            </ul>
+        </div>
+        <div class="layui-row">
+            <ul class="d3">
+                <font size="5">积分使用规则：</font>
+                <li class="d5">
+                    积分可以通过在购买商品获得，积分会在确认收货的时候增加。
+                </li>
+                <font size="5">如何使用积分？</font>
+                <li>
+                    可使用积分兑换商品
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<iframe th:src="@{/foot/bottom}"  width="1920px;" height="656px;"  style="border: none"></iframe>
+</body>
+</html>

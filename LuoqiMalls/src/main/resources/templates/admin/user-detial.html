@@ -1,0 +1,144 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="Bookmark" th:href="@{/favicon.ico}" >
+	<link rel="Shortcut Icon" th:href="@{/favicon.ico}" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" th:src="@{lib/html5shiv.js}"></script>
+	<script type="text/javascript" th:src="@{lib/respond.min.js}"></script>
+
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui/css/H-ui.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/H-ui.admin.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/skin/default/skin.css}" id="skin" />
+	<link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style.css}" />
+	<!--[if IE 6]>
+	<script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--/meta 作为公共模版分离出去-->
+
+	<link th:href="@{lib/webuploader/0.1.5/webuploader.css}" rel="stylesheet" type="text/css" />
+
+	<style>
+		.c1{
+			width: 70px;
+			height: 30px;
+			margin-bottom: 30px;
+			margin-top: 30px;
+		}
+		.c2{
+			margin-left: 600px;
+		}
+	</style>
+</head>
+<body>
+<div class="page-container">
+	<form th:action="@{/admin/member-list}" method="post" class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户账号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userAccount}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">登录密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userPwd}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">真实姓名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userName}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">昵称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userNick}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">性别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userSex}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">手机号码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userTel}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">邮箱地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userEmall}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">出生日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${#dates.format(user.userBir,'yyyy-MM-dd')}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">积分：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userinit}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">支付密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userPws}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">账户余额：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:text="${user.userMoney}"></td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否会员用户：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<td  class="input-text"  th:if="${user.userVip==0}">会员用户</td>
+				<td  class="input-text"  th:unless="${user.userVip==0}">普通用户</td>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">收货地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select" name="volumeClass">
+					<option th:each="addressList:${addressList}">
+						<span  th:text="${addressList.addressProvince}"></span>省
+						<span  th:text="${addressList.addressCity}"></span>市
+						<span  th:text="${addressList.addressDistrict}"></span>区
+						<span  th:text="${addressList.addressDetailed}"></span></p>
+					</option>
+				</select>
+			</div>
+		</div>
+		<input class="c1 c2" type="submit" value="返回"/>
+	</form>
+</div>
+
+                <!--_footer 作为公共模版分离出去-->
+                <script type="text/javascript" th:src="@{lib/jquery/1.9.1/jquery.min.js}"></script>
+				<script type="text/javascript" th:src="@{lib/layer/2.4/layer.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui/js/H-ui.min.js}"></script>
+				<script type="text/javascript" th:src="@{static/h-ui.admin/js/H-ui.admin.js}"></script> <!--/_footer 作为公共模版分离出去-->
+
+
+</body>
+</html>

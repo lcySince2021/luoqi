@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>商品页面</title>
+
+
+
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" th:href="@{/layui/css/res.layui.com/layui/dist/css/layui.css}"  media="all">
+		<link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+		<link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+		<link th:href="@{/css/admin.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/amazeui.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/demo.css}" rel="stylesheet" type="text/css" />
+		<link type="text/css" th:href="@{/css/optstyle.css}" rel="stylesheet" />
+		<link type="text/css" th:href="@{/css/style.css}" rel="stylesheet" />
+
+		<script type="text/javascript" th:src="@{/js/jquery-1.7.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/quick_links.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/amazeui.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.imagezoom.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flexslider.js}"></script>
+		<script type="text/javascript" th:src="@{/js/list.js}"></script>
+		<link rel="stylesheet" th:href="@{/introduction/css/ShopShow.css}" type="text/css" />
+		<link rel="stylesheet" th:href="@{/introduction/css/MagicZoom.css}" type="text/css" />
+		<script th:src="@{/introduction/js/MagicZoom.js}" type="text/javascript"></script>
+		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+		<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+
+		<script>
+            layui.use('element', function(){
+                var $ = layui.jquery
+                    ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+                //触发事件
+                var active = {
+                    tabAdd: function(){
+                        //新增一个Tab项
+                        element.tabAdd('demo', {
+                            title: '新选项'+ (Math.random()*1000|0) //用于演示
+                            ,content: '内容'+ (Math.random()*1000|0)
+                            ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                        })
+                    }
+                    ,tabDelete: function(othis){
+                        //删除指定Tab项
+                        element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                        othis.addClass('layui-btn-disabled');
+                    }
+                    ,tabChange: function(){
+                        //切换到指定Tab项
+                        element.tabChange('demo', '22'); //切换到：用户管理
+                    }
+                };
+
+                $('.site-demo-active').on('click', function(){
+                    var othis = $(this), type = othis.data('type');
+                    active[type] ? active[type].call(this, othis) : '';
+                });
+
+                //Hash地址的定位
+                var layid = location.hash.replace(/^#test=/, '');
+                element.tabChange('test', layid);
+
+                element.on('tab(test)', function(elem){
+                    location.hash = 'test='+ $(this).attr('lay-id');
+                });
+
+            });
+		</script>
+
+
+		<style>
+			.l1{
+				padding-left: 40px;
+			}
+			.l2{
+				width:150px;
+
+			}
+			.l3{
+				margin-top: 20px;
+			}
+			.l4{
+				padding-left: 300px;
+			}
+			.l5{
+				margin-top: 10px;
+			}
+			p.title{padding:0px 10px;overflow:hidden;height:35px;line-height:18px;width:150px}
+		</style>
+	</head>
+
+	<body>
+
+	<!--<iframe src="../home/heart.html" width="1920px" height="45px"  style="border: none"></iframe>&lt;!&ndash;->-->
+		<!--顶部导航条 -->
+	<div class="hmtop">
+		<!--顶部导航条 -->
+		<!--<iframe th:src="@{/home/heart.html}" width="1920px" height="36px"  style="border: none"></iframe>-->
+		<div th:replace="/home/heart :: html"></div>
+		<!--悬浮搜索框-->
+
+		<div class="nav white">
+			<!--<iframe th:src="@{/goods/heart1}" width="1960px" height="120px"  style="border: none"></iframe>&lt;!&ndash;->-->
+			<div th:replace="/home/heart1 :: html"></div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+
+			<!--悬浮搜索框-->
+
+
+
+			<!--<div class="clear"></div>-->
+            <!--<b class="line"></b>-->
+			<!--<div class="listMain">-->
+
+				<!--分类-->
+
+				<!--<iframe src="../分类/分类.html" width="1980px" height="130px"style="border: none"></iframe>-->
+
+				<ol class="am-breadcrumb am-breadcrumb-slash">
+					<li><a th:href="@{/tomain}">首页</a></li>
+
+					<li><a th:href="@{/goods/search1?p=男装}">分类</a></li>
+					<li class="am-active">内容</li>
+				</ol>
+				<script type="text/javascript">
+					$(function() {});
+					$(window).load(function() {
+						$('.flexslider').flexslider({
+							animation: "slide",
+							start: function(slider) {
+								$('body').removeClass('loading');
+							}
+						});
+					});
+				</script>
+				<div class="scoll">
+					<section class="slider">
+						<div class="flexslider">
+							<ul class="slides">
+								<li>
+									<img src="../images/y.jpg" title="pic" />
+								</li>
+								<li>
+									<img src="../images/t.jpg" />
+								</li>
+								<li>
+									<img src="../images/y.jpg" />
+								</li>
+							</ul>
+						</div>
+					</section>
+				</div>
+
+				<!--放大镜-->
+
+				<div class="item-inform">
+					<div class="clearfixLeft" id="clearcontent" >
+
+
+							<!--<script type="text/javascript">-->
+								<!--$(document).ready(function() {-->
+									<!--$(".jqzoom").imagezoom();-->
+									<!--$("#thumblist li a").click(function() {-->
+										<!--$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");-->
+										<!--$(".jqzoom").attr('src', $(this).find("img").attr("mid"));-->
+										<!--$(".jqzoom").attr('rel', $(this).find("img").attr("big"));-->
+									<!--});-->
+								<!--});-->
+							<!--</script>-->
+
+							<!--<div class="tb-booth tb-pic tb-s310" >-->
+								<!--&lt;!&ndash;<img th:src="${goods.image.goodsPicMaster}" />&ndash;&gt;-->
+								<!--<div style="height:282px;width: 220px">-->
+									<!--<img th:src="${good.image.goodsPicMaster}" width="220"height="282"/>-->
+								<!--</div>-->
+
+
+							<div id="tsShopContainer">
+								<div id="tsImgS" style="width: 300px;"><a th:href="@{good.image.goodsPicMaster}" title="Images" class="MagicZoom" id="MagicZoom"><img width="300" height="300" th:src="${good.image.goodsPicMaster}" /></a></div>
+								<div id="tsPicContainer">
+									<div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
+									<div id="tsImgSCon">
+										<ul>
+											<li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" th:src="${good.image.goodsPicMaster}" th:tsImgS="${good.image.goodsPicMaster}" /></li>
+											<li onclick="showPic(1)" rel="MagicZoom"><img height="30" width="42" th:src="${good.image.goodsPic1}" th:tsImgS="${good.image.goodsPic1}" /></li>
+											<li onclick="showPic(2)" rel="MagicZoom"><img height="30" width="42" th:src="${good.image.goodsPic2}" th:tsImgS="${good.image.goodsPic2}" /></li>
+											<li onclick="showPic(3)" rel="MagicZoom"><img height="30" width="42" th:src="${good.image.goodsPic3}" th:tsImgS="${good.image.goodsPic3}" /></li>
+											<li onclick="showPic(4)" rel="MagicZoom"><img height="30" width="42" th:src="${good.image.goodsPic4}" th:tsImgS="${good.image.goodsPic4}" /></li>
+										</ul>
+									</div>
+									<div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
+								</div>
+								<!--<img class="MagicZoomLoading" width="16" height="16" src="images/loading.gif" alt="Loading..." />-->
+							</div>
+
+							<script th:src="@{/introduction/js/ShopShow.js}"></script>
+
+
+
+
+						</div>
+
+
+					<div style="float: right">
+						<div class="clearfixRight">
+
+							<!--规格属性-->
+							<!--名称-->
+							<div class="tb-detail-hd">
+								<h1>
+									<strong  th:text="${good.goodsName}"></strong>
+								</h1>
+							</div>
+							<input  type="hidden" class="wwgoodsid" id="wwgoodsid" name="wwgoodsid" th:value="${good.goodsId}"/>
+							<div class="tb-detail-list">
+								<!--价格-->
+								<div class="tb-detail-price">
+									<li class="price iteminfo_price">
+										<dt>促销价</dt>
+										<dd><em>¥</em><b class="sys_item_price">
+											<strong  th:text="${good.goodsLastPrice}"></strong>
+										</b>  </dd>
+
+										<span  class="price iteminfo_mktprice">
+										&nbsp;&nbsp;原价
+									<dd><em>¥</em><b class="sys_item_mktprice">	<strong  th:text="${good.goodsPrice}"></strong></b></dd></span>	<span  class="price iteminfo_mktprice">
+											&nbsp;&nbsp;&nbsp;&nbsp;获得积分
+									<dd><b >	<strong  th:text="${good.goodsMark}"></strong></b></dd></span>
+									</li>
+
+									<div class="clear"></div>
+								</div>
+
+
+								<!--地址-->
+								<!--<dl class="iteminfo_parameter freight">-->
+									<!--<dt>配送至</dt>-->
+									<!--<div class="iteminfo_freprice">-->
+										<!--<div class="am-form-content address">-->
+											<!--<select data-am-selected>-->
+												<!--<option value="a">小明家</option>-->
+												<!--<option value="b">小红家</option>-->
+											<!--</select>-->
+
+										<!--</div>-->
+
+									<!--</div>-->
+								<!--</dl>-->
+								<div class="clear"></div>
+
+								<!--销量-->
+								<ul class="tm-ind-panel">
+									<li class="tm-ind-item tm-ind-sellCount canClick">
+										<div class="tm-indcon"><span class="tm-label">库存量</span><span class="tm-count">
+											<a th:text="${good.goodsSum}"></a>
+<input class="goodsSums" id="goodsSums" type="hidden" th:value="${good.goodsSum}" />
+										</span></div>
+									</li>
+									<li class="tm-ind-item tm-ind-sumCount canClick">
+										<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">
+											<a th:text="${good.goodsSales}"></a>
+										</span></div>
+									</li>
+									<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
+										<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">
+												<span class="tb-tbcr-num" th:text="${evaluatePageInfo.total}"></span>
+										</span></div>
+									</li>
+								</ul>
+								<div class="clear"></div>
+
+								<br/>
+								<br/>
+								<br/>
+								<div >
+
+
+									<input style="width: 30px" type="button" id="numdown" class="numdown" value="-">
+									<input style="width: 60px" class="cartnum" id="cartnum" type="text" value="1" />
+									<input  style="width: 30px" type="button" id="numup" class="numup" value="+">
+								</div>
+								<!--各种规格-->
+								<dl class="iteminfo_parameter sys_item_specpara">
+									<dt class="theme-login"><div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div></dt>
+									<dd>
+										<!--操作页面-->
+
+										<div class="theme-popover-mask"></div>
+
+										<div class="theme-popover">
+											<div class="theme-span"></div>
+											<div class="theme-poptit">
+												<a href="javascript:;" title="关闭" class="close">×</a>
+											</div>
+											<div class="theme-popbod dform">
+												<form class="theme-signin" name="loginform" action="" method="post">
+
+													<div class="theme-signin-left">
+
+														<!--<div class="theme-options">-->
+														<!--<div class="cart-title">类型</div>-->
+														<!--<ul>-->
+														<!--<li class="sku-line selected">衬衫<i></i></li>-->
+														<!--</ul>-->
+
+														<!--</div>-->
+														<!--<div class="theme-options">-->
+														<!--<div class="cart-title">颜色</div>-->
+														<!--<ul>-->
+														<!--<li class="sku-line selected">黑色<i></i></li>-->
+														<!--</ul>-->
+
+														<!--</div>-->
+														<div class="theme-options">
+															<div class="cart-title number">数量</div>
+									<dd>
+										<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
+										<input id="text_box" name="" type="text" value="1" style="width:30px;" />
+										<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
+										<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+									</dd>
+
+							</div>
+							<div class="clear"></div>
+
+							<div class="btn-op">
+								<div class="btn am-btn am-btn-warning">确认</div>
+								<div class="btn close am-btn am-btn-warning">取消</div>
+							</div>
+						</div>
+						<div class="shopPromotion gold">
+							<div class="hot">
+								<dt class="tb-metatit">店铺优惠</dt>
+								<div class="gold-list">
+									<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="coupon">
+								<dt class="tb-metatit">优惠券</dt>
+								<div class="gold-list">
+									<ul>
+										<li>125减5</li>
+										<li>198减10</li>
+										<li>298减20</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="theme-signin-right">
+						<div class="img-info">
+							<img src="../images/songzi.jpg" />
+						</div>
+						<div class="text-info">
+							<span class="J_Price price-now">¥39.00</span>
+							<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+						</div>
+					</div>
+
+						<div class="clear"></div>
+					</div>
+
+<!--1-->
+
+
+
+
+
+
+											</form>
+										</div>
+									</div>
+
+								</dd>
+							</dl>
+							<div class="clear"></div>
+							<!--活动	-->
+
+						</div>
+
+						<div class="pay">
+
+							<!--<div class="theme-options">-->
+								<!--<p><dt>类型</dt>-->
+
+									<!--<a style="border:2px solid red">衬衫<i></i></a>-->
+								<!--</p>-->
+								<!--<p></p>-->
+								<!--<p></p>-->
+								<!--<p><dt>颜色</dt>-->
+
+									<!--<a style="border:2px solid red">黑色<i></i></a>-->
+								<!--</p>-->
+
+							<!--</div>-->
+
+
+							<div class="pay-opt">
+							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
+
+							</div>
+							<li>
+								<div class=" tb-btn tb-btn-buy ">
+									<input  type="hidden" class="wwgoodsmoney" id="wwgoodsmoney" name="wwgoodsmoney" />
+
+									<a id="LikBuys" title="点此按钮到下一步确认购买信息" >立即购买</a>
+								</div>
+							</li>
+							<li>
+								<div class="clearfix tb-btn tb-btn-basket ">
+									<input  type="hidden" class="collectfootgoodsId" name="collectfootgoodsId" th:value="${good.goodsId}"/>
+
+									<a  title="加入购物车" class="cartaddgoods"
+									><i></i>加入购物车</a>
+								</div>
+							</li>
+
+						</div>
+
+					</div>
+<!--2-->
+					<div class="clear"></div>
+
+				</div>
+
+	<!--优惠套装-->
+	<div class="match">
+		<!--<div class="match-title">相似商品</div>-->
+		<div class="match-comment">
+			<ul class="like_list">
+				<li class="l1" th:each="goodsList:${goodsList}">
+					<div class="s_picBox">
+						<a th:href="@{/goods/good(goodsId=${goodsList.goodsId})}">
+							<img th:src="${goodsList.image.goodsPicMaster}"/></a>
+					</div> <p class="title fl l2"><a target="_blank" th:href="@{/goods/good(goodsId=${goodsList.goodsId})}" th:text="${goodsList.goodsName}"></a></p>
+					<div class="info-box"> <b>¥</b><span class="info-box-price" th:text="${goodsList.goodsPrice}"></span> </div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+	<!-- introduce-->
+
+	<div class="introduce">
+		<div class="browse">
+			<div class="mc">
+				<ul>
+					<div class="mt">
+						<!--<h2>看了又看</h2>-->
+					</div>
+
+					<li class="first" th:each="goods:${goods}">
+						<div class="p-img">
+							<a  th:href="@{/goods/good(goodsId=${goods.goodsId})}"> <img class="" th:src="${goods.image.goodsPicMaster}"/> </a>
+						</div>
+						<div class="p-name"><p class="title" align="center"><a th:href="@{/goods/good(goodsId=${goods.goodsId})}" th:text="${goods.goodsName}">
+						</a></p>
+						</div>
+						<div class="p-price"><b>¥</b><strong th:text="${goods.goodsPrice}"></strong></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="introduceMain">
+			<div class="am-tabs" data-am-tabs>
+				<ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
+					<li class="am-active">
+						<a href="#">
+
+							<span class="index-needs-dt-txt">宝贝详情</span></a>
+
+					</li>
+
+					<li>
+						<a href="#">
+
+							<span class="index-needs-dt-txt">全部评价</span></a>
+
+					</li>
+
+				</ul>
+
+				<div class="am-tabs-bd">
+
+					<div class="am-tab-panel am-fade am-in am-active">
+						<div class="J_Brand">
+
+							<div class="attr-list-hd tm-clear">
+								<h4>产品描述：</h4></div>
+							<div class="clear"></div>
+							<ul id="J_AttrUL">
+								<li title="">产品类型:&nbsp;<span th:text="${className1}"></span>:<span th:text="${className2}"></span></li>
+								<li title="">好评数:&nbsp;<span th:text="${evaluatePageInfo1.total}"></span>&nbsp;&nbsp;&nbsp;差评数：&nbsp;<span th:text="${evaluatePageInfo2.total}"></span></li>
+							</ul>
+							<ul id="J_AttrUL">
+								<li title="" class="16">商品描述：&nbsp;<span th:text="${good.goodsDescribe}"></span></li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+
+						<div class="details l4" >
+							<div class="attr-list-hd after-market-hd">
+								<h4>商品细节</h4>
+							</div>
+							<div class="twlistNews" style="width:300px;">
+								<img th:src="${good.image.goodsPic2}" width="300px" height="250px" />
+								<img class="l5" th:src="${good.image.goodsPic3}" width="300px" height="250px" />
+								<img class="l5" th:src="${good.image.goodsPic4}" width="300px" height="250px" />
+							</div>
+						</div>
+						<div class="clear"></div>
+
+					</div>
+					<div class="J_Brand">
+
+						<div class="attr-list-hd tm-clear">
+							<h4>售后保障：</h4></div>
+						<div class="clear"></div>
+						<ul id="J_AttrUL" class="l3">
+							<div class="mc">
+								<div class="item-detail item-detail-copyright">
+									<div class="serve-agree-bd">
+										<dl>
+											<dt>
+												<i class="goods"></i>
+												<strong>罗琦承诺</strong>
+											</dt>
+											<dd>
+												罗琦平台卖家销售并发货的商品，由平台卖家提供发票和相应的售后服务。请您放心购买！<br />
+											</dd>
+											<dt>
+												<i class="goods"></i><strong>
+												正品行货             </strong>
+											</dt>
+											<dd>罗琦商城向您保证所售商品均为正品行货，罗琦自营商品开具机打发票或电子发票。</dd>
+										</dl>
+									</div>
+									<div id="state">
+										<br />
+										<strong>价格说明：</strong><br />
+										<p><b>罗琦价：</b>罗琦价为商品的销售价，是您最终决定是否购买商品的依据。</p>
+										<p><b>划线价：</b>商品展示的划横线价格为参考价，并非原价，该价格可能是品牌专柜标价、商品吊牌价或由品牌供应商提供的正品零售价（如厂商指导价、建议零售价等）或该商品在罗琦平台上曾经展示过的销售价；由于地区、时间的差异性和市场行情波动，品牌专柜标价、商品吊牌价等可能会与您购物时展示的不一致，该价格仅供您参考。</p>
+										<p><b>折扣：</b>如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。</p>
+										<p><b>异常问题：</b>商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。</p>
+
+									</div>
+								</div>
+							</div>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+						<ul class="layui-tab-title">
+							<li class="layui-this">全部评价
+								<span class="tb-tbcr-num" th:text="${evaluatePageInfo.total}"></span>
+							</li>
+							<li>好评
+								<span class="tb-tbcr-num" th:text="${evaluatePageInfo1.total}"></span>
+							</li>
+							<li>差评
+								<span class="tb-tbcr-num" th:text="${evaluatePageInfo2.total}"></span>
+							</li>
+						</ul>
+						<div class="layui-tab-content" style="height: 100px;">
+							<div class="layui-tab-item layui-show" >
+								<li class="am-comment" th:each="evaluate:${evaluatePageInfo.list}">
+									<img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+									<!-- 评论者头像 -->
+
+									<div class="am-comment-main">
+										<!-- 评论内容容器 -->
+										<header class="am-comment-hd">
+											<div class="am-comment-meta">
+												<!-- 评论元数据 -->
+												<a href="#link-to-user" class="am-comment-author" th:text="${evaluate.user.userNick}"></a>
+												<!-- 评论者 -->
+												评论于
+												<time datetime="" th:text="${#dates.format(evaluate.pjTime,'yyyy-MM-dd')}"></time>
+											</div>
+										</header>
+
+										<div class="am-comment-bd">
+											<div class="tb-rev-item " data-id="255776406962">
+												<div class="J_TbcRate_ReviewContent tb-tbcr-content " th:text="${evaluate.evaluateText}">
+												</div>
+											</div>
+											<div>追评：&nbsp;<span th:text="${evaluate.review}"></span></div>
+											<div class="J_TbcRate_ReviewContent tb-tbcr-content ">商家回复：&nbsp;<span th:text="${evaluate.reply}"></span></div>
+										</div>
+									</div>
+								</li>
+								<div style="float: right">
+									共 <b th:text="${evaluatePageInfo.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=1,goodsId=${good.goodsId})}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo.prePage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									当前第<span th:text="${evaluatePageInfo.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo.nextPage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo.pages},goodsId=${good.goodsId})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+							</div>
+							<div class="layui-tab-item" >
+								<li class="am-comment" th:each="evaluate1:${evaluatePageInfo1.list}">
+									<img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+									<!-- 评论者头像 -->
+
+									<div class="am-comment-main">
+										<!-- 评论内容容器 -->
+										<header class="am-comment-hd">
+											<div class="am-comment-meta">
+												<!-- 评论元数据 -->
+												<a href="#link-to-user" class="am-comment-author" th:text="${evaluate1.user.userNick}"></a>
+												<!-- 评论者 -->
+												评论于
+												<time datetime="" th:text="${#dates.format(evaluate1.pjTime,'yyyy-MM-dd')}"></time>
+											</div>
+										</header>
+
+										<div class="am-comment-bd">
+											<div class="tb-rev-item " data-id="255776406962">
+												<div class="J_TbcRate_ReviewContent tb-tbcr-content " th:text="${evaluate1.evaluateText}">
+												</div>
+											</div>
+											<div>追评：&nbsp;<span th:text="${evaluate1.review}"></span></div>
+											<div class="J_TbcRate_ReviewContent tb-tbcr-content ">商家回复：&nbsp;<span th:text="${evaluate1.reply}"></span></div>
+										</div>
+									</div>
+								</li>
+								<div style="float: right">
+									共 <b th:text="${evaluatePageInfo1.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=1,goodsId=${good.goodsId})}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo1.prePage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo1.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									当前第<span th:text="${evaluatePageInfo1.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo1.nextPage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo1.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo1.pages},goodsId=${good.goodsId})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+							</div>
+							<div class="layui-tab-item" >
+								<li class="am-comment" th:each="evaluate2:${evaluatePageInfo2.list}">
+									<img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+									<!-- 评论者头像 -->
+
+									<div class="am-comment-main">
+										<!-- 评论内容容器 -->
+										<header class="am-comment-hd">
+											<div class="am-comment-meta">
+												<!-- 评论元数据 -->
+												<a href="#link-to-user" class="am-comment-author" th:text="${evaluate2.user.userNick}"></a>
+												<!-- 评论者 -->
+												评论于
+												<time datetime="" th:text="${#dates.format(evaluate2.pjTime,'yyyy-MM-dd')}"></time>
+											</div>
+										</header>
+
+										<div class="am-comment-bd">
+											<div class="tb-rev-item " data-id="255776406962">
+												<div class="J_TbcRate_ReviewContent tb-tbcr-content " th:text="${evaluate2.evaluateText}">
+												</div>
+											</div>
+											<div>追评：&nbsp;<span th:text="${evaluate2.review}"></span></div>
+											<div class="J_TbcRate_ReviewContent tb-tbcr-content ">商家回复：&nbsp;<span th:text="${evaluate2.reply}"></span></div>
+										</div>
+									</div>
+								</li>
+								<div style="float: right">
+									共 <b th:text="${evaluatePageInfo2.total}"></b> 条 &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=1,goodsId=${good.goodsId})}">首页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo2.prePage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo2.isFirstPage}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									当前第<span th:text="${evaluatePageInfo2.pageNum}"></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo2.nextPage},goodsId=${good.goodsId})}" th:if="${!evaluatePageInfo2.isLastPage}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{/goods/good(curPage=${evaluatePageInfo2.pages},goodsId=${good.goodsId})}">末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<!--菜单 -->
+			<div class=tip style="border: none">
+				<div th:if="${session.user != null}"  >
+					<div id="sidebar">
+						<div id="wrap">
+							<div id="prof" class="item ">
+								<a th:href="@{/user/showInformation}">
+									<span class="setting "></span>
+								</a>
+								<div class="ibar_login_box status_login ">
+									<div class="avatar_box ">
+										<p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>
+										<ul class="user_info ">
+											<li>用户名sl1903</li>
+											<li>级&nbsp;别普通会员</li>
+										</ul>
+									</div>
+									<div class="login_btnbox ">
+										<a th:href="@{/order/order}" class="login_order ">我的订单</a>
+										<a th:href="@{/collect/collectsearch(userId=${session.user.userId})}" class="login_favorite ">我的收藏</a>
+									</div>
+									<i class="icon_arrow_white "></i>
+								</div>
+
+							</div>
+							<div id="shopCart " class="item ">
+								<a th:href="@{/cart/search(userId=${session.user.userId})}">
+									<span class="message "></span>
+								</a>
+								<p>
+									购物车
+								</p>
+								<p class="cart_num ">
+									<em th:text="${usercartnum}" style="color: white"></em>
+								</p>
+							</div>
+							<div id="asset " class="item ">
+								<a th:href="@{/volume/personselectvolume}">
+									<span class="view "></span>
+								</a>
+								<div class="mp_tooltip ">
+									我的资产
+									<i class="icon_arrow_right_black "></i>
+								</div>
+							</div>
+
+							<div id="foot " class="item ">
+								<a th:href="@{/foot/getfoot(userId=${session.user.userId})}">
+									<span class="zuji "></span>
+								</a>
+								<div class="mp_tooltip ">
+									我的足迹
+									<i class="icon_arrow_right_black "></i>
+								</div>
+							</div>
+
+							<div id="brand " class="item ">
+								<a th:href="@{/collect/collectsearch(userId=${session.user.userId})}">
+									<span class="wdsc "><img src="../images/wdsc.png " /></span>
+								</a>
+								<div class="mp_tooltip ">
+									我的收藏
+									<i class="icon_arrow_right_black "></i>
+								</div>
+							</div>
+
+							<!--<div id="broadcast " class="item ">-->
+							<!--<a href="# ">-->
+							<!--<span class="chongzhi "><img src="../images/chongzhi.png " /></span>-->
+							<!--</a>-->
+							<!--<div class="mp_tooltip ">-->
+							<!--我要充值-->
+							<!--<i class="icon_arrow_right_black "></i>-->
+							<!--</div>-->
+							<!--</div>-->
+
+							<div class="quick_toggle ">
+								<!--<li class="qtitem ">-->
+								<!--<a href="# "><span class="kfzx "></span></a>-->
+								<!--<div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>-->
+								<!--</li>-->
+								<!--二维码 -->
+								<li class="qtitem ">
+									<a href="#none "><span class="mpbtn_qrcode "></span></a>
+									<div class="mp_qrcode " style="display:none; "><img src="../images/weixin_code_145.png " /><i class="icon_arrow_white "></i></div>
+								</li>
+								<li class="qtitem ">
+									<a href="#top " class="return_top "><span class="top "></span></a>
+								</li>
+							</div>
+
+							<!--回到顶部 -->
+							<div id="quick_links_pop " class="quick_links_pop hide "></div>
+
+						</div>
+
+					</div>
+				</div>
+				<div id="prof-content " class="nav-content ">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						我
+					</div>
+				</div>
+				<div id="shopCart-content " class="nav-content ">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						购物车
+					</div>
+				</div>
+				<div id="asset-content " class="nav-content ">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						资产
+					</div>
+
+					<div class="ia-head-list ">
+						<a href="# " target="_blank " class="pl ">
+							<div class="num ">0</div>
+							<div class="text ">优惠券</div>
+						</a>
+						<a href="# " target="_blank " class="pl ">
+							<div class="num ">0</div>
+							<div class="text ">红包</div>
+						</a>
+						<a href="# " target="_blank " class="pl money ">
+							<div class="num ">￥0</div>
+							<div class="text ">余额</div>
+						</a>
+					</div>
+
+				</div>
+				<div id="foot-content " class="nav-content ">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						足迹
+					</div>
+				</div>
+				<div id="brand-content " class="nav-content ">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						收藏
+					</div>
+				</div>
+				<div id="broadcast-content " class="nav-content " style="border: none;margin-top: 35">
+					<div class="nav-con-close ">
+						<i class="am-icon-angle-right am-icon-fw "></i>
+					</div>
+					<div>
+						充值
+					</div>
+				</div>
+			</div>
+
+	<script>
+        $(function () {
+            $("#add_cart").one("click", function () {
+                goods_id = $('#goods_id').val();
+                $.post('/collection/', {
+                {#'Published': Published,#}
+                'goods_id': goods_id,
+                    {#'url_': url_#}
+            }, function (data) {
+                    if (data.msg === '您已收藏过改商品') {
+                        {#$("#add_cart").css("background", "grey").text("已收藏")#}
+                        $("#add_cart").attr('disabled', true)
+
+                        $("#add_cart").css("background", "#F75009").text("已收藏")
+                        alert("您已收藏过改商品")
+                    } else if (data.msg === 'need_login') {
+                        top.location.href = data.href
+                    } else {
+                        $("#add_cart").css("background", "#F75009").text("已收藏")
+                        alert("收藏成功")
+                    }
+                }, 'json')
+
+            })
+
+        });
+	</script>
+	</body>
+
+	<script>
+        //    点击放入购物车
+        //    <!--@{/cart/insertcart-->
+
+        $(".cartaddgoods").click(
+            function () {
+
+                var r=$(this).prevAll(".collectfootgoodsId").val();
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/cart/insertcart?goodsId="+r,
+                    success: function (maps) {
+                        alert("添加成功");
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+            }
+
+
+        );
+	</script>
+
+	<script>
+
+
+        $(".numdown").click(function () {
+            var r=$(this).prevAll(".goodsId").val();
+            var obj = $(this).closest("div").find(".cartnum");
+//            var money = $(this).closest("div").find(".cartgoodsmoney");
+//            var allmoney = $(this).closest("li").next().find(".cartallmoney");
+
+
+            if (obj.val() <=1) {
+                obj.val(1);
+            } else {
+                obj.val(parseInt(obj.val()) - 1);
+            }
+            var objs = $(this).closest("div").find(".cartnum");
+            objs.change();
+//            var sum=parseInt(objs.val()*money.val()).toFixed(2);
+//            $(this).closest("li").next().find(".cartallmoneychange").innerHTML = "pp";
+//            $(this).closest("li").next().find(".cartallmoneychange").html(sum);
+            GetCount();
+
+        });
+
+
+
+
+
+
+
+        $(".numup").click(function () {
+            var r=$(this).prevAll(".goodsId").val();
+            var obj = $(this).closest("div").find(".cartnum");
+//            var money = $(this).closest("div").find(".cartgoodsmoney");
+//            var allmoney = $(this).closest("li").next().find(".cartallmoney");
+
+            var obj = $(this).closest("div").find(".cartnum");
+            obj.val(parseInt(obj.val()) + 1);
+            var objs = $(this).closest("div").find(".cartnum");
+            objs.change();
+            if(parseInt(objs.val())>=3)
+			{
+			    alert("已享三件八折优惠")
+			}
+            var goodsnum = document.getElementById('goodsSums').value;
+           if(	parseInt(objs.val())>=goodsnum )
+		   {
+
+			   alert("已无存货");
+		   }
+//			if(parseInt(objs.val())>=3)
+//			{
+//			    alert("已享三件八折优惠")
+//			}
+//            var sum=parseInt(objs.val()*money.val()).toFixed(2);
+//            $(this).closest("li").next().find(".cartallmoneychange").html(sum);
+            GetCount();
+
+//
+
+        });
+
+
+
+        function GetCount() {
+
+            var conts = document.getElementById('cartnum').value;
+
+            $("#wwgoodsmoney").val(conts);
+
+        }
+
+
+//        wwgoodsid
+
+
+        $("#LikBuys").click(
+            function () {
+                var num = document.getElementById('cartnum').value;
+                  var goodsId=document.getElementById('wwgoodsid').value;
+                  if(num>=3)
+				  {
+				      var wws=0;
+				  }
+				  else
+				  {
+				      var wws=1;
+				  }
+
+                $.ajax({
+                    //请求的方式,向服务器发送请求,查询用户名是否存在,发送什么类型的请求
+                    type: "POST",
+                    //MVC ,请求发送C层,C->Model,去域对象的里面取,js可以是被el表达式
+                    url: "/Luoqi/order/huiinsertordergoods?goodsId="+goodsId+"&num="+num+"&wws="+wws,
+                    success: function (maps) {
+                        var ww=maps.orders;
+                        var hui=maps.hui;
+                       if(hui>=3)
+					   {
+
+                           window.location.href="/Luoqi/pay/pay?orderNum="+ww;
+					   }
+					   else {
+                           window.location.href="/Luoqi/pay/huipay?orderNum="+ww;
+                       }
+
+
+
+
+
+                    },
+                    error: function () {
+                        layer.closeAll();
+                    }
+                });
+
+            });
+	</script>
+
+
+</html>

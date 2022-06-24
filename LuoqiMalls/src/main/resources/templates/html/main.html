@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+</head>
+<body>
+<div th:replace="/html/hello :: html"></div>
+<table>
+    <tr>
+      <th>商品名</th>
+      <th>价格</th>
+      <th>图片</th>
+      <th>上架时间</th>
+      <th>类别</th>
+      <th>修改</th>
+    </tr>
+    <tr th:each="goods:${glist}">
+     <td  th:text="${goods.name}"></td>
+     <td  th:text="${goods.price}"></td>
+     <td><img th:src="@{/}+${goods.pic}" height="40px" width="40px"></td>
+     <td  th:text="${#dates.format(goods.createtime,'yyyy-MM-dd')}"></td>
+     <td  th:text="${goods.catory.cname}"></td>
+        <td ><a th:href="@{/user/updatepre(gid=${goods.id})}">修改</a></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

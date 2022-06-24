@@ -1,0 +1,43 @@
+#adminmain{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    z-index:10;
+    display: none;
+}
+#adminlogin{
+    width: 400px;
+    height: 350px;
+    position: absolute;
+    margin-left: 750px;
+    margin-top: 80px;
+    background-color: white;
+    opacity: 1;
+    border-radius: 30px;
+    z-index:11;
+    display: none;
+}
+#top{
+    margin-top: 50px;
+    text-align: center;
+    /*margin-left: 100px;*/
+    font-weight: bold;
+    font-size: 20px;
+}
+.login{
+    margin-top: 40px;
+    width: 80px;
+    height: 40px;
+    /*margin-left: 100px;*/
+    font-size: 16px;
+    background-color: deepskyblue;
+}
+#chacha{
+    margin-top: -10px;
+    margin-left: 360px;
+    position: absolute;
+    font-size: 50px;
+    cursor: pointer;
+}

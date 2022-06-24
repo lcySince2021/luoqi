@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--头部-->
+<!--untext  html标签
+
+   商品详情   图片文字,布局不一样   html
+
+   富文本编辑器上传
+
+
+-->
+<span  th:if="${session.user != null}">
+    欢迎您,
+    <span th:text="${session.user.username}"></span>
+    <a th:href="@{/user/loginOut}">注销</a>
+</span>
+<span th:unless="${session.user != null}">
+    <a th:href="@{/toLogin}">请登录</a>
+</span>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <package name="com.gem.luoqimalls.pojo"></package>
+    </typeAliases>
+    <!--自定义类型转换器,java类型和数据库类型转换-->
+    <typeHandlers>
+        <typeHandler handler="com.gem.typeHander.SexTypeHander"/>
+    </typeHandlers>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+    <mappers>
+      <package name="com.gem.luoqimalls.mapper"/>
+    </mappers>
+</configuration>

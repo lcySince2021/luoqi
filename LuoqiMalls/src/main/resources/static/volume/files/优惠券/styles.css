@@ -1,0 +1,145 @@
+﻿body {
+  margin:0px;
+  background-image:none;
+  position:static;
+  left:auto;
+  width:1750px;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+}
+#base {
+  z-index:0;
+}
+#u0 {
+  border-width:0px;
+}
+.quan{
+  float: left;
+  margin-left: 15px;
+  margin-top: 30px;
+  height: 260px;
+  width: 570px;
+  /*border: 1px solid black;*/
+}
+.tupian{
+  position: absolute;
+}
+.volumeId{
+  position: absolute;
+}
+.lingquchenggong{
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-top: 140px;
+  margin-left: 370px;
+  position: absolute;
+}
+.lijilingqu{
+  cursor: pointer;
+  float: right;
+  margin-left: 480px;
+  margin-top: 1px;
+  position: absolute;
+}
+.wenzi{
+  margin-left: 220px;
+  margin-top: 40px;
+  color: red;
+  font-size: 20px;
+  position: absolute;
+}
+.leibie{
+  position: absolute;
+  font-size: 15px;
+  margin-top: 120px;
+  margin-left: 200px;
+  font-weight: bold;
+}
+.man{
+  margin-left: 300px;
+  margin-top: 60px;
+  color: red;
+  font-size: 18px;
+  position: absolute;
+}
+#ppp{
+  position: absolute;
+  left: 200px;
+}
+#ww1{
+  /*position: absolute;*/
+  left:50px ;
+  top:1300px;
+  border: none;
+}
+#xxx{
+  /*border: 1px solid red;*/
+    position: absolute;
+    left: 80px;
+    top: 690px;
+  }
+#w1{
+  margin-left: 280px;
+  font-size: 50px;
+  font-weight: bold;margin-top: 20px;
+
+}     #w2{
+        font-size: 40px;
+        /*margin-left: 900px;*/
+  text-align: center;
+      }
+.top{
+  margin: 0 auto;
+  width: 1499px;
+  height: 90px;
+  margin-top: 10px;
+  margin-left: 205px;
+}
+.righttupian123{
+  position: absolute;
+}
+.righttupian{
+  /*position: absolute;*/
+  height: 167px;
+}
+.top_wenzi123{
+  margin-left: -30px;
+  position: absolute;
+  /*float: left;*/
+}
+.top_wenzi1{
+  color: white;
+  font-size: 25px;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.top_wenzi2{
+  color: white;
+  font-size: 25px;
+  margin-left: 100px;
+  margin-top: 130px;
+}
+.top_wenzi3{
+  color: white;
+  font-size: 25px;
+  margin-left: 100px;
+  margin-top: 130px;
+}
+
+#u34 {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:0px;
+  height:0px;
+}
+.xiaotu{
+  margin-left: 12px;
+  margin-top: 37px;
+  width: 180px;
+  height: 180px;
+  position: absolute;
+}
